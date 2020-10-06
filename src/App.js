@@ -1,7 +1,7 @@
 import produce from "immer";
 import React, { useState } from "react";
 import "./App.css";
-​
+
 const initialState = {
   userProfile: {
     id: "1",
@@ -22,10 +22,9 @@ const initialState = {
       draft: "",
     },
   },
-​
   currentChatId: null,
 };
-​
+
 const months = [
   "январь",
   "февраль",
@@ -40,28 +39,26 @@ const months = [
   "ноябрь",
   "декабрь",
 ];
-​
+
 const getTime = (isoTime) => {
   const time = new Date(isoTime);
-​
   return `${time.getHours()}:${time
     .getMinutes()
     .toString()
     .padStart(2, "0")} ${time.getDate()} ${months[time.getMonth()]}`;
 };
-​
+
 const Chat = ({ currentChat, onDraftChange, onSendMessage }) => {
   const onChangeHandle = (event) => {
     const text = event.currentTarget.value;
-​
     onDraftChange(text);
   };
-​
+
   const onSendMessageHandler = (event) => {
     event.preventDefault();
     onSendMessage();
   };
-​
+
   return (
     <div className="App">
       <div>{currentChat.title}</div>
@@ -83,9 +80,8 @@ const Chat = ({ currentChat, onDraftChange, onSendMessage }) => {
     </div>
   );
 };
-​
+
 const ChatList = ({chats, onViewChat}) => {
-​
   return (
     <div>
       {Object.values(chats).map((chat) => (
@@ -94,18 +90,16 @@ const ChatList = ({chats, onViewChat}) => {
     </div>
   );
 };
-​
+
 const Router = () => {
   const [state, setState] = useState(initialState);
   const currentChat = state.chats[state.currentChatId];
-​
   const onDraftChange = (text) => {
     const newState = produce(state, (draftState) => {
       draftState.chats[state.currentChatId].draft = text;
     });
     setState(newState);
   };
-​
   const onSendMessage = () =>{
     const newState = produce(state, (draftState) => {
       draftState.chats[state.currentChatId].messages.push({
@@ -117,16 +111,15 @@ const Router = () => {
     });
     setState(newState);
   }
-​
   const onViewChat = (chatId) => {
     const newState = {...state, currentChatId:chatId}
     setState(newState);
   }
-  
   return state.currentChatId !== null ? (
     <Chat currentChat={currentChat} onDraftChange={onDraftChange} onSendMessage={onSendMessage}/>
   ) : (
     <ChatList chats={state.chats} onViewChat={onViewChat}/>
   );
 };
+
 export default Router;
