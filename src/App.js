@@ -14,17 +14,19 @@ const initialState = {
       id: "777",
       messages: [{ time: "2020-09-30T20:00", from: "nexta", text: "Hello" }],
       draft: "",
+      avatar: "nexta.png"
     },
     888: {
       title: "tutBY",
       id: "888",
       messages: [{ time: "2020-08-30T24:00", from: "tutBY", text: "Hi" }],
       draft: "",
+      avatar: "tutby.png"
     },
   },
   currentPage: {
-    type: "chat",
-    currentChatId: "777",
+    type: "chatList",
+    currentChatId: null,
   },
 };
 
@@ -42,15 +44,47 @@ const months = [
   "ноябрь",
   "декабрь",
 ];
+
 const generateId = () => {
   return Math.random().toString();
 };
+
 const getTime = (isoTime) => {
   const time = new Date(isoTime);
   return `${time.getHours()}:${time
     .getMinutes()
     .toString()
     .padStart(2, "0")} ${time.getDate()} ${months[time.getMonth()]}`;
+};
+
+const ChatList = ({ chats, onViewChat, onAddChat }) => {
+  return (
+    <div className="Chats">
+      <div className="pxt-4">
+        <div id="addChat">
+          <button className="chatList_addChat" onClick={onAddChat}>Add chat</button>
+        </div>
+        <h4 className="mb-4">Chats</h4>
+      </div>
+      <ul id="chat-list">
+      {Object.values(chats).map((chat) => (
+        <li>
+          <div className="chat-title" onClick={() => {onViewChat(chat.id);}} key={chat.id}>
+            <div className="media">
+              <div className="chat-img">
+					      <img className="avatar" src={process.env.PUBLIC_URL + `/` + chat.avatar} alt="chat-img" />
+					    </div>
+              <div>
+				        <h5>{chat.title}</h5>	
+              </div>
+            </div>
+          </div>
+        </li>
+      ))}
+      </ul>
+      
+    </div>
+  );
 };
 
 const Chat = ({ currentChat, onDraftChange, onSendMessage, onBack }) => {
@@ -106,24 +140,6 @@ const AddChat = ({ onBack, onAddChat }) => {
         <button type="submit">Add</button>
       </form>
     </>
-  );
-};
-
-const ChatList = ({ chats, onViewChat, onAddChat }) => {
-  return (
-    <div>
-      <button onClick={onAddChat}>Add chat</button>
-      {Object.values(chats).map((chat) => (
-        <div
-          onClick={() => {
-            onViewChat(chat.id);
-          }}
-          key={chat.id}
-        >
-          {chat.title}
-        </div>
-      ))}
-    </div>
   );
 };
 
