@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./AddChat.css";
 
-export const AddChat = ({ onBack, onAddChat }) => {
+export const AddChat = ({ onAddChat }) => {
   const [chatName, setChatName] = useState("");
 
   const onChangeHandler = (event) => {
@@ -13,6 +13,9 @@ export const AddChat = ({ onBack, onAddChat }) => {
     event.preventDefault();
     onAddChat(chatName);
   };
+
+  const onClose = () => {};
+
   return (
     <React.Fragment>
       <div className="modal">
@@ -20,7 +23,7 @@ export const AddChat = ({ onBack, onAddChat }) => {
           <div className="addChat-body">
             <div className="addChat-title">
               <h5>Create New Chat</h5>
-              <button onClick={onBack} type="button" className="close">
+              <button type="button" className="close" onClick={onClose}>
                 <span aria-hidden="true">×</span>
               </button>
             </div>
@@ -48,7 +51,7 @@ export const AddChat = ({ onBack, onAddChat }) => {
               </form>
             </div>
             <div className="modalFooter">
-              <button onClick={onAddChatHandler} className="createChat-btn">
+              <button onClick={onAddChatHandler} className="createChat-button">
                 Create Chat
               </button>
             </div>

@@ -3,7 +3,7 @@ import React from "react";
 export const ChatList = ({ chats, onViewChat, onAddChat }) => {
   return (
     <div className="chats">
-      <div>
+      <div className="listTitle-margins">
         <div id="addChat">
           <button className="chatList_addChat" onClick={onAddChat}>
             Add chat

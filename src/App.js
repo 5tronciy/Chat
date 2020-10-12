@@ -27,8 +27,8 @@ const initialState = {
     },
   },
   currentPage: {
-    type: "chatList",
-    currentChatId: null,
+    type: "chat",
+    currentChatId: 777,
   },
 };
 
@@ -86,10 +86,6 @@ const Router = () => {
     };
     setState(newState);
   };
-  const onBack = () => {
-    const newState = { ...state, currentPage: { type: "chatList" } };
-    setState(newState);
-  };
 
   const onGoToAddChat = () => {
     const newState = { ...state, currentPage: { type: "addChat" } };
@@ -110,20 +106,20 @@ const Router = () => {
   };
 
   return state.currentPage.type === "chat" ? (
-    <Chat
-      currentChat={currentChat}
-      onDraftChange={onDraftChange}
-      onSendMessage={onSendMessage}
-      onBack={onBack}
-    />
-  ) : state.currentPage.type === "chatList" ? (
-    <ChatList
-      chats={state.chats}
-      onViewChat={onViewChat}
-      onAddChat={onGoToAddChat}
-    />
+    <div className="wrapper">
+      <ChatList
+        chats={state.chats}
+        onViewChat={onViewChat}
+        onAddChat={onGoToAddChat}
+      />
+      <Chat
+        currentChat={currentChat}
+        onDraftChange={onDraftChange}
+        onSendMessage={onSendMessage}
+      />
+    </div>
   ) : state.currentPage.type === "addChat" ? (
-    <AddChat onBack={onBack} onAddChat={onAddChat} />
+    <AddChat onAddChat={onAddChat} />
   ) : (
     <div>Page Not Found</div>
   );
