@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./AddChat.css";
 
 export class AddChat extends React.Component {
-  render({ onAddChat }) {
+  render() {
     const [chatName, setChatName] = useState("");
 
     const onChangeHandler = (event) => {
@@ -12,7 +12,7 @@ export class AddChat extends React.Component {
 
     const onAddChatHandler = (event) => {
       event.preventDefault();
-      onAddChat(chatName);
+      this.props.onAddChat(chatName);
     };
 
     const onClose = () => {};
