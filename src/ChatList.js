@@ -13,13 +13,12 @@ export const ChatList = ({ chats, onViewChat, onAddChat }) => {
       </div>
       <ul className="chatList">
         {Object.values(chats).map((chat) => (
-          <li>
+          <li key={chat.id}>
             <div
               className="chatTitleContainer"
               onClick={() => {
                 onViewChat(chat.id);
               }}
-              key={chat.id}
             >
               <div className="media">
                 <div className="chat-img">
