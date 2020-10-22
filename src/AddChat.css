@@ -1,7 +1,9 @@
 .modal {
   transition: opacity 0.15s linear;
   position: fixed;
-  width: 100%;
+  left: 30%;
+  top: 0;
+  width: 40%;
   height: 100%;
 }
 
@@ -182,3 +184,14 @@ label {
   border-color: #473bea;
   cursor: pointer;
 }
+
+position: relative;
+display: flex;
+flex-direction: column;
+width: 100%;
+pointer-events: auto;
+background-color: #272c3b;
+background-clip: padding-box;
+border: 1px solid #36404a;
+border-radius: 0.4rem;
+outline: 0;

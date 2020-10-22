@@ -61,13 +61,16 @@ export const getTime = (isoTime) => {
 
 const Router = () => {
   const [state, setState] = useState(initialState);
+  const [modal, setModal] = useState(false);
   const currentChat = state.chats[state.currentPage.currentChatId];
+
   const onDraftChange = (text) => {
     const newState = produce(state, (draftState) => {
       draftState.chats[state.currentPage.currentChatId].draft = text;
     });
     setState(newState);
   };
+
   const onSendMessage = () => {
     const newState = produce(state, (draftState) => {
       draftState.chats[state.currentPage.currentChatId].messages.push({
@@ -79,6 +82,7 @@ const Router = () => {
     });
     setState(newState);
   };
+
   const onViewChat = (chatId) => {
     const newState = {
       ...state,
@@ -88,8 +92,7 @@ const Router = () => {
   };
 
   const onGoToAddChat = () => {
-    const newState = { ...state, currentPage: { type: "addChat" } };
-    setState(newState);
+    setModal(true);
   };
 
   const onAddChat = (chatName) => {
@@ -117,9 +120,8 @@ const Router = () => {
         onDraftChange={onDraftChange}
         onSendMessage={onSendMessage}
       />
+      {modal && <AddChat onAddChat={onAddChat} />}
     </div>
-  ) : state.currentPage.type === "addChat" ? (
-    <AddChat onAddChat={onAddChat} />
   ) : (
     <div>Page Not Found</div>
   );

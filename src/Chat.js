@@ -32,8 +32,8 @@ export const Chat = ({ currentChat, onDraftChange, onSendMessage }) => {
         <ul className="chat__messages">
           <div>
             {currentChat.messages.map((message) => (
-              <li>
-                <div key={message.time + message.from}>
+              <li key={message.time + message.from}>
+                <div>
                   {message.text} {getTime(message.time)}
                 </div>
               </li>
