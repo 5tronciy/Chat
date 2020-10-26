@@ -3,20 +3,27 @@ import ReactDOM from "react-dom";
 
 import "./AddChat.css";
 
-export const AddChat = ({ onAddChat }) => {
+export const AddChat = ({ onAddChat, onCloseModal }) => {
   const [chatName, setChatName] = useState("");
+  const [avatar, setAvatar] = useState("");
 
   const onChangeHandler = (event) => {
     const name = event.currentTarget.value;
     setChatName(name);
   };
 
-  const onAddChatHandler = (event) => {
-    event.preventDefault();
-    onAddChat(chatName);
+  const onLoadAvatar = (event) => {
+    const avatar = event.currentTarget.value;
+    setAvatar(avatar);
   };
 
-  const onClose = () => {};
+  const onAddChatHandler = (event) => {
+    event.preventDefault();
+    if (chatName.length === 0) {
+      return;
+    }
+    onAddChat(chatName, avatar);
+  };
 
   return ReactDOM.createPortal(
     <div className="modal">
@@ -24,7 +31,7 @@ export const AddChat = ({ onAddChat }) => {
         <div className="addChat-body">
           <div className="addChat-title">
             <h5>Create New Chat</h5>
-            <button type="button" className="close" onClick={onClose}>
+            <button type="button" className="close" onClick={onCloseModal}>
               <span aria-hidden="true">×</span>
             </button>
           </div>
@@ -42,7 +49,13 @@ export const AddChat = ({ onAddChat }) => {
               </div>
               <div className="form-group">
                 <label>Avatar</label>
-                <input type="file" className="form-control" />
+                <input
+                  type="file"
+                  className="form-control"
+                  accept=".jpg, .jpeg, .png"
+                  value={avatar}
+                  onChange={onLoadAvatar}
+                />
               </div>
             </form>
           </div>

@@ -32,31 +32,13 @@ const initialState = {
   },
 };
 
-const months = [
-  "январь",
-  "февраль",
-  "март",
-  "апрель",
-  "май",
-  "июнь",
-  "июль",
-  "август",
-  "сентябрь",
-  "октябрь",
-  "ноябрь",
-  "декабрь",
-];
-
 const generateId = () => {
   return Math.random().toString();
 };
 
 export const getTime = (isoTime) => {
   const time = new Date(isoTime);
-  return `${time.getHours()}:${time
-    .getMinutes()
-    .toString()
-    .padStart(2, "0")} ${time.getDate()} ${months[time.getMonth()]}`;
+  return `${time.getHours()}:${time.getMinutes().toString().padStart(2, "0")}`;
 };
 
 const Router = () => {
@@ -105,7 +87,12 @@ const Router = () => {
       },
       currentPage: { type: "chat", currentChatId: id },
     };
+    setModal(false);
     setState(newState);
+  };
+
+  const onCloseModal = () => {
+    setModal(false);
   };
 
   return state.currentPage.type === "chat" ? (
@@ -120,7 +107,7 @@ const Router = () => {
         onDraftChange={onDraftChange}
         onSendMessage={onSendMessage}
       />
-      {modal && <AddChat onAddChat={onAddChat} />}
+      {modal && <AddChat onAddChat={onAddChat} onCloseModal={onCloseModal} />}
     </div>
   ) : (
     <div>Page Not Found</div>

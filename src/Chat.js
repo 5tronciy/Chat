@@ -1,6 +1,8 @@
 import React from "react";
 import { getTime } from "./App";
 
+import "./Chat.css";
+
 export const Chat = ({ currentChat, onDraftChange, onSendMessage }) => {
   const onChangeHandle = (event) => {
     const text = event.currentTarget.value;
@@ -30,15 +32,30 @@ export const Chat = ({ currentChat, onDraftChange, onSendMessage }) => {
       </div>
       <div className="chat__conversation">
         <ul className="chat__messages">
-          <div>
-            {currentChat.messages.map((message) => (
-              <li key={message.time + message.from}>
-                <div>
-                  {message.text} {getTime(message.time)}
+          {currentChat.messages.map((message) => (
+            <li key={message.time + message.from} className="right">
+              <div className="message">
+                <div className="chat-avatar">
+                  <img
+                    src={process.env.PUBLIC_URL + "/pahonia.png"}
+                    alt=""
+                    className="avatar"
+                  />
                 </div>
-              </li>
-            ))}
-          </div>
+                <div className="message-content">
+                  <div className="chat__message-textWrapper">
+                    <div className="chat__message-text-content">
+                      <div>{message.text} </div>
+                      <div className="chat__message-time">
+                        {getTime(message.time)}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="conversation-name">Me</div>
+                </div>
+              </div>
+            </li>
+          ))}
         </ul>
       </div>
       <div className="chat__footer">
