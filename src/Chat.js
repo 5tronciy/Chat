@@ -3,7 +3,13 @@ import { getTime } from "./App";
 
 import "./Chat.css";
 
-export const Chat = ({ currentChat, onDraftChange, onSendMessage }) => {
+export const Chat = ({
+  currentUser,
+  currentChat,
+  chats,
+  onDraftChange,
+  onSendMessage,
+}) => {
   const onChangeHandle = (event) => {
     const text = event.currentTarget.value;
     onDraftChange(text);
@@ -33,11 +39,20 @@ export const Chat = ({ currentChat, onDraftChange, onSendMessage }) => {
       <div className="chat__conversation">
         <ul className="chat__messages">
           {currentChat.messages.map((message) => (
-            <li key={message.time + message.from} className="right">
+            <li
+              key={message.time + message.from}
+              className={message.from === currentUser.id ? "right" : ""}
+            >
               <div className="message">
                 <div className="chat-avatar">
                   <img
-                    src={process.env.PUBLIC_URL + "/pahonia.png"}
+                    src={
+                      process.env.PUBLIC_URL +
+                      `/` +
+                      (message.from === currentUser.id
+                        ? currentUser.avatar
+                        : chats[message.from].avatar)
+                    }
                     alt=""
                     className="avatar"
                   />
@@ -51,7 +66,11 @@ export const Chat = ({ currentChat, onDraftChange, onSendMessage }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="conversation-name">Me</div>
+                  <div className="conversation-name">
+                    {message.from === currentUser.id
+                      ? currentUser.nickName
+                      : chats[message.from].title}
+                  </div>
                 </div>
               </div>
             </li>
