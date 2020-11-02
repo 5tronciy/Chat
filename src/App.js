@@ -3,37 +3,9 @@ import React, { useState } from "react";
 import { AddChat } from "./AddChat";
 import { Chat } from "./Chat";
 import { ChatList } from "./ChatList";
-
-const initialState = {
-  userProfile: {
-    id: "1",
-    nickName: "Alfons",
-    avatar: "pahonia.png",
-  },
-  chats: {
-    777: {
-      title: "nexta",
-      id: "777",
-      messages: [
-        { time: "2020-09-30T20:00", from: "777", text: "Hello" },
-        { time: "2020-08-30T24:00", from: "888", text: "Hi" },
-      ],
-      draft: "",
-      avatar: "nexta.png",
-    },
-    888: {
-      title: "tutBY",
-      id: "888",
-      messages: [{ time: "2020-08-30T24:00", from: "888", text: "Hi" }],
-      draft: "",
-      avatar: "tutby.png",
-    },
-  },
-  currentPage: {
-    type: "chat",
-    currentChatId: 777,
-  },
-};
+import initialState from "./store/initialState";
+import { connect } from "react-redux";
+import mapStateToProps from "./store/mapStateToPropsGenerator";
 
 const generateId = () => {
   return Math.random().toString();
@@ -121,4 +93,4 @@ const Router = () => {
   );
 };
 
-export default Router;
+export default connect(mapStateToProps)(Router);

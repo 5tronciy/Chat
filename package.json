@@ -8,11 +8,9 @@
     "@testing-library/user-event": "^7.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-<<<<<<< HEAD
-=======
     "react-query": "^2.25.2",
     "react-query-devtools": "^2.6.0",
->>>>>>> 5731be0d223a31b4a044fb45f4ae2a6a23590e4b
+    "react-redux": "^7.2.2",
     "react-scripts": "3.4.3",
     "redux": "^4.0.5"
   },

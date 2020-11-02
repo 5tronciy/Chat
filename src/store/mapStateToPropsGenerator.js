@@ -1,16 +1,18 @@
 function mapStateToProps(component) {
   switch (component) {
-    case "Component_1": {
+    case "Chatlist": {
       return function (state) {
         return {
-          value_1: state.value_1,
+          chats: state.chats,
         };
       };
     }
-    case "Component_2": {
+    case "Chat": {
       return function (state) {
         return {
-          value_2: state.value_2,
+          currentUser: state.currentUser,
+          chats: state.chats,
+          currentPage: state.currentPage,
         };
       };
     }

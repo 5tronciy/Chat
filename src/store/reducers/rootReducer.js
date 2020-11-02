@@ -1,12 +1,6 @@
-function reducer(state, action) {
-  switch (action.type) {
-    case ACTION_1:
-      return { value: action.value_1 };
-    case ACTION_2:
-      return { value: action.value_2 };
+import initialState from "../initialState";
 
-    default:
-      return state;
-  }
+function rootReducer(state = initialState, action) {
+  return state;
 }
-export default reducer;
+export default rootReducer;
