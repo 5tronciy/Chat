@@ -1,12 +1,11 @@
-import produce from "immer";
 import React, { useState } from "react";
-import { AddChat } from "./AddChat";
-import { Chat } from "./Chat";
-import { ChatList } from "./ChatList";
+import AddChat from "./AddChat";
+import Chat from "./Chat";
+import ChatList from "./ChatList";
 import initialState from "./store/initialState";
-import { connect, Provider } from "react-redux";
+import { connect } from "react-redux";
 import mapStateToProps from "./store/mapStateToPropsGenerator";
-import axios from "axios";
+//import axios from "axios";
 import store from "./store/store";
 
 const generateId = () => {
@@ -21,16 +20,16 @@ export const getTime = (isoTime) => {
 const Router = () => {
   const [state, setState] = useState(initialState);
   const [modal, setModal] = useState(false);
-  const currentChat = state.chats[state.currentPage.currentChatId];
+  const currentChat = state.chats[state.currentChat.currentChatId];
   const currentUser = state.userProfile;
   const chats = state.chats;
 
-  axios
+  /*axios
     .get(`https://github.com/5tronciy/JSON_Server/blob/[main|master]/db.json`)
     .then((res) => {
       const posts = res.data.data.children.map((obj) => obj.data);
       setState({ posts });
-    });
+    });*/
 
   store.dispatch({
     type: "SET_USER",
@@ -41,25 +40,6 @@ const Router = () => {
     type: "SET_CURRENT_CHAT",
     currentPage: {},
   });
-
-  const onDraftChange = (text) => {
-    const newState = produce(state, (draftState) => {
-      draftState.chats[state.currentPage.currentChatId].draft = text;
-    });
-    setState(newState);
-  };
-
-  const onSendMessage = () => {
-    const newState = produce(state, (draftState) => {
-      draftState.chats[state.currentPage.currentChatId].messages.push({
-        text: draftState.chats[state.currentPage.currentChatId].draft,
-        time: new Date().toISOString(),
-        from: draftState.userProfile.id,
-      });
-      draftState.chats[state.currentPage.currentChatId].draft = "";
-    });
-    setState(newState);
-  };
 
   const onViewChat = (chatId) => {
     const newState = {
@@ -92,21 +72,11 @@ const Router = () => {
   };
 
   return state.currentPage.type === "chat" ? (
-    <Provider store={store}>
-      <div className="wrapper">
-        <ChatList
-          context={chats}
-          onViewChat={onViewChat}
-          onAddChat={onGoToAddChat}
-        />
-        <Chat
-          context={store}
-          onDraftChange={onDraftChange}
-          onSendMessage={onSendMessage}
-        />
-        {modal && <AddChat context={modal} />}
-      </div>
-    </Provider>
+    <div className="wrapper">
+      <ChatList onViewChat={onViewChat} onAddChat={onGoToAddChat} />
+      <Chat />
+      {modal && <AddChat context={modal} />}
+    </div>
   ) : (
     <div>Page Not Found</div>
   );

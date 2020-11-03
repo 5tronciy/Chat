@@ -23,8 +23,7 @@ const initialState = {
       avatar: "tutby.png",
     },
   },
-  currentPage: {
-    type: "chat",
+  currentChat: {
     currentChatId: 777,
   },
 };
