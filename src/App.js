@@ -4,8 +4,10 @@ import { AddChat } from "./AddChat";
 import { Chat } from "./Chat";
 import { ChatList } from "./ChatList";
 import initialState from "./store/initialState";
-import { connect } from "react-redux";
+import { connect, Provider } from "react-redux";
 import mapStateToProps from "./store/mapStateToPropsGenerator";
+import axios from "axios";
+import store from "./store/store";
 
 const generateId = () => {
   return Math.random().toString();
@@ -22,6 +24,23 @@ const Router = () => {
   const currentChat = state.chats[state.currentPage.currentChatId];
   const currentUser = state.userProfile;
   const chats = state.chats;
+
+  axios
+    .get(`https://github.com/5tronciy/JSON_Server/blob/[main|master]/db.json`)
+    .then((res) => {
+      const posts = res.data.data.children.map((obj) => obj.data);
+      setState({ posts });
+    });
+
+  store.dispatch({
+    type: "SET_USER",
+    userProfile: {},
+  });
+
+  store.dispatch({
+    type: "SET_CURRENT_CHAT",
+    currentPage: {},
+  });
 
   const onDraftChange = (text) => {
     const newState = produce(state, (draftState) => {
@@ -73,21 +92,23 @@ const Router = () => {
   };
 
   return state.currentPage.type === "chat" ? (
-    <div className="wrapper">
-      <ChatList
-        chats={state.chats}
-        onViewChat={onViewChat}
-        onAddChat={onGoToAddChat}
-      />
-      <Chat
-        currentUser={currentUser}
-        currentChat={currentChat}
-        chats={chats}
-        onDraftChange={onDraftChange}
-        onSendMessage={onSendMessage}
-      />
-      {modal && <AddChat onAddChat={onAddChat} onCloseModal={onCloseModal} />}
-    </div>
+    <Provider store={store}>
+      <div className="wrapper">
+        <ChatList
+          chats={chats}
+          onViewChat={onViewChat}
+          onAddChat={onGoToAddChat}
+        />
+        <Chat
+          currentUser={currentUser}
+          currentChat={currentChat}
+          chats={chats}
+          onDraftChange={onDraftChange}
+          onSendMessage={onSendMessage}
+        />
+        {modal && <AddChat onAddChat={onAddChat} onCloseModal={onCloseModal} />}
+      </div>
+    </Provider>
   ) : (
     <div>Page Not Found</div>
   );

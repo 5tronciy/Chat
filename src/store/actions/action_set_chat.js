@@ -1,0 +1,3 @@
+const SET_CURRENT_CHAT = "SET_CURRENT_CHAT";
+
+export default SET_CURRENT_CHAT;

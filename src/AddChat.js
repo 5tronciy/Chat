@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-
+import mapStateToProps from "./store/mapStateToPropsGenerator";
+import { connect, Provider } from "react-redux";
+import store from "./store/store";
 import "./AddChat.css";
 
-export const AddChat = ({ onAddChat, onCloseModal }) => {
+const AddChat = ({ onAddChat, onCloseModal }) => {
   const [chatName, setChatName] = useState("");
   const [avatar, setAvatar] = useState("");
 
@@ -26,47 +28,51 @@ export const AddChat = ({ onAddChat, onCloseModal }) => {
   };
 
   return ReactDOM.createPortal(
-    <div className="modal">
-      <div className="addChat">
-        <div className="addChat-body">
-          <div className="addChat-title">
-            <h5>Create New Chat</h5>
-            <button type="button" className="close" onClick={onCloseModal}>
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div className="addChat-description">
-            <form onSubmit={onAddChatHandler}>
-              <div className="form-group">
-                <label>Chat Name</label>
-                <input
-                  placeholder="Enter Chat Name"
-                  type="text"
-                  value={chatName}
-                  onChange={onChangeHandler}
-                  className="form-control"
-                />
-              </div>
-              <div className="form-group">
-                <label>Avatar</label>
-                <input
-                  type="file"
-                  className="form-control"
-                  accept=".jpg, .jpeg, .png"
-                  value={avatar}
-                  onChange={onLoadAvatar}
-                />
-              </div>
-            </form>
-          </div>
-          <div className="modalFooter">
-            <button onClick={onAddChatHandler} className="createChat-button">
-              Create Chat
-            </button>
+    <Provider store={store}>
+      <div className="modal">
+        <div className="addChat">
+          <div className="addChat-body">
+            <div className="addChat-title">
+              <h5>Create New Chat</h5>
+              <button type="button" className="close" onClick={onCloseModal}>
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div className="addChat-description">
+              <form onSubmit={onAddChatHandler}>
+                <div className="form-group">
+                  <label>Chat Name</label>
+                  <input
+                    placeholder="Enter Chat Name"
+                    type="text"
+                    value={chatName}
+                    onChange={onChangeHandler}
+                    className="form-control"
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Avatar</label>
+                  <input
+                    type="file"
+                    className="form-control"
+                    accept=".jpg, .jpeg, .png"
+                    value={avatar}
+                    onChange={onLoadAvatar}
+                  />
+                </div>
+              </form>
+            </div>
+            <div className="modalFooter">
+              <button onClick={onAddChatHandler} className="createChat-button">
+                Create Chat
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>,
+    </Provider>,
     document.getElementById("portal")
   );
 };
+
+export default connect(mapStateToProps)(AddChat);

@@ -16,6 +16,13 @@ function mapStateToProps(component) {
         };
       };
     }
+    case "AddChat": {
+      return function (state) {
+        return {
+          modal: state.modal,
+        };
+      };
+    }
     default:
       return undefined;
   }
