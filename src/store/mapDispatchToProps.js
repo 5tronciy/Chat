@@ -1,19 +1,26 @@
 import { bindActionCreators } from "redux";
-import action_1 from "./actionCreators/action_1";
-import action_2 from "./actionCreators/action_2";
+import addChat from "./actionCreators/action_add_chat";
+import setCurrentChat from "./actionCreators/action_set_chat";
+import setUser from "./actionCreators/action_set_user";
 
 function mapDispatchToProps(component) {
   switch (component) {
-    case "Component_1":
+    case "Chat":
       return function (dispatch) {
         return {
-          change_value_1: bindActionCreators(action_1, dispatch),
+          change_current_chat: bindActionCreators(setCurrentChat, dispatch),
         };
       };
-    case "Component_2":
+    case "ChatList":
       return function (dispatch) {
         return {
-          change_value_2: bindActionCreators(action_2, dispatch),
+          change_user: bindActionCreators(setUser, dispatch),
+        };
+      };
+    case "AddChat":
+      return function (dispatch) {
+        return {
+          change_modal_state: bindActionCreators(addChat, dispatch),
         };
       };
     default:
