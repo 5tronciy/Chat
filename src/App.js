@@ -95,18 +95,16 @@ const Router = () => {
     <Provider store={store}>
       <div className="wrapper">
         <ChatList
-          chats={chats}
+          context={chats}
           onViewChat={onViewChat}
           onAddChat={onGoToAddChat}
         />
         <Chat
-          currentUser={currentUser}
-          currentChat={currentChat}
-          chats={chats}
+          context={store}
           onDraftChange={onDraftChange}
           onSendMessage={onSendMessage}
         />
-        {modal && <AddChat onAddChat={onAddChat} onCloseModal={onCloseModal} />}
+        {modal && <AddChat context={modal} />}
       </div>
     </Provider>
   ) : (

@@ -3,14 +3,9 @@ import { getTime } from "./App";
 import { connect, Provider } from "react-redux";
 import "./Chat.css";
 import mapStateToProps from "./store/mapStateToPropsGenerator";
+import store from "./store/store";
 
-const Chat = ({
-  currentUser,
-  currentChat,
-  chats,
-  onDraftChange,
-  onSendMessage,
-}) => {
+const Chat = ({ onDraftChange, onSendMessage }) => {
   const onChangeHandle = (event) => {
     const text = event.currentTarget.value;
     onDraftChange(text);
@@ -29,21 +24,21 @@ const Chat = ({
             <div className="chat-img">
               <img
                 className="avatar"
-                src={process.env.PUBLIC_URL + `/` + currentChat.avatar}
+                src={process.env.PUBLIC_URL + `/` + store.currentChat.avatar}
                 alt="chat-img"
               />
             </div>
             <div>
-              <h5 className="chatTitle">{currentChat.title}</h5>
+              <h5 className="chatTitle">{store.currentChat.title}</h5>
             </div>
           </div>
         </div>
         <div className="chat__conversation">
           <ul className="chat__messages">
-            {currentChat.messages.map((message) => (
+            {store.currentChat.messages.map((message) => (
               <li
                 key={message.time + message.from}
-                className={message.from === currentUser.id ? "right" : ""}
+                className={message.from === store.currentUser.id ? "right" : ""}
               >
                 <div className="message">
                   <div className="chat-avatar">
@@ -51,9 +46,9 @@ const Chat = ({
                       src={
                         process.env.PUBLIC_URL +
                         `/` +
-                        (message.from === currentUser.id
-                          ? currentUser.avatar
-                          : chats[message.from].avatar)
+                        (message.from === store.currentUser.id
+                          ? store.currentUser.avatar
+                          : store.chats[message.from].avatar)
                       }
                       alt=""
                       className="avatar"
@@ -69,9 +64,9 @@ const Chat = ({
                       </div>
                     </div>
                     <div className="conversation-name">
-                      {message.from === currentUser.id
-                        ? currentUser.nickName
-                        : chats[message.from].title}
+                      {message.from === store.currentUser.id
+                        ? store.currentUser.nickName
+                        : store.chats[message.from].title}
                     </div>
                   </div>
                 </div>
@@ -87,7 +82,7 @@ const Chat = ({
                   type="text"
                   placeholder="Enter Message..."
                   className="form-control"
-                  value={currentChat.draft}
+                  value={store.currentChat.draft}
                   onChange={onChangeHandle}
                 />
               </div>
