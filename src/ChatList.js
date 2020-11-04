@@ -1,48 +1,34 @@
 import React from "react";
-import { connect, Provider } from "react-redux";
-import store from "./store/store";
-import mapStateToProps from "./store/mapStateToPropsGenerator";
+import { useSelector, useDispatch } from "react-redux";
+import ChatInList from "./ChatInList";
+import addChatModal from "./store/actionCreators/action_add_chat_modal";
 
-const ChatList = ({ chats, onViewChat, onAddChat }) => {
+const ChatList = () => {
+  const chats = useSelector((state) => state.chats);
+
+  const dispatch = useDispatch();
+
+  const onAddChat = () => {
+    dispatch(addChatModal(true));
+  };
+
   return (
-    <Provider store={store}>
-      <div className="chats">
-        <div className="listTitle-margins">
-          <div id="addChat">
-            <button className="chatList_addChat" onClick={onAddChat}>
-              Add chat
-            </button>
-          </div>
-          <h4 className="listTitle">Chats</h4>
+    <div className="chats">
+      <div className="listTitle-margins">
+        <div id="addChat">
+          <button className="chatList_addChat" onClick={onAddChat}>
+            Add chat
+          </button>
         </div>
-        <ul className="chatList">
-          {Object.values(chats).map((chat) => (
-            <li key={chat.id}>
-              <div
-                className="chatTitleContainer"
-                onClick={() => {
-                  onViewChat(chat.id);
-                }}
-              >
-                <div className="media">
-                  <div className="chat-img">
-                    <img
-                      className="avatar"
-                      src={process.env.PUBLIC_URL + `/` + chat.avatar}
-                      alt="chat-img"
-                    />
-                  </div>
-                  <div>
-                    <h5 className="chatTitle">{chat.title}</h5>
-                  </div>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
+        <h4 className="listTitle">Chats</h4>
       </div>
-    </Provider>
+      <ul className="chatList">
+        {Object.values(chats).map((chat) => (
+          <ChatInList chat={chat} />
+        ))}
+      </ul>
+    </div>
   );
 };
 
-export default connect(mapStateToProps)(ChatList);
+export default ChatList;

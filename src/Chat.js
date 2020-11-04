@@ -9,13 +9,15 @@ const Chat = () => {
   const onChangeHandle = (event) => {
     dispatch(draftChange(event.currentTarget.value));
   };
+
   const currentChatId = useSelector((state) => state.currentChat.currentChatId);
+
   const onSendMessageHandler = (event) => {
     event.preventDefault();
     dispatch(sendMessage(currentChatId));
   };
 
-  const currentChat = useSelector((state) => state.currentChat);
+  const currentChat = useSelector((state) => state.chats[currentChatId]);
 
   const dispatch = useDispatch();
 

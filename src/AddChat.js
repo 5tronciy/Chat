@@ -1,78 +1,87 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import mapStateToProps from "./store/mapStateToPropsGenerator";
-import { connect, Provider } from "react-redux";
-import store from "./store/store";
 import "./AddChat.css";
+import { useSelector, useDispatch } from "react-redux";
+import chatNameChange from "./store/actionCreators/action_chat_name_change";
+import loadAvatar from "./store/actionCreators/action_load_avatar";
+import addChatModal from "./store/actionCreators/action_add_chat_modal";
+import createChat from "./store/actionCreators/action_create_chat";
 
-const AddChat = ({ onAddChat, onCloseModal }) => {
-  const [chatName, setChatName] = useState("");
-  const [avatar, setAvatar] = useState("");
+const generateId = () => {
+  return Math.random().toString();
+};
+
+const AddChat = () => {
+  const newChatId = generateId();
+  const chats = useSelector((state) => state.chats);
+  // const avatar = useSelector((state) => state.chats.newChatId.avatar);
+  // const chatName = useSelector((state) => state.chats.newChatId.title);
+  const dispatch = useDispatch();
 
   const onChangeHandler = (event) => {
-    const name = event.currentTarget.value;
-    setChatName(name);
+    dispatch(chatNameChange(event.currentTarget.value));
   };
 
   const onLoadAvatar = (event) => {
-    const avatar = event.currentTarget.value;
-    setAvatar(avatar);
+    dispatch(loadAvatar(event.currentTarget.value));
   };
 
   const onAddChatHandler = (event) => {
     event.preventDefault();
-    if (chatName.length === 0) {
+    if (chats.draft.title === 0) {
       return;
     }
-    onAddChat(chatName, avatar);
+    dispatch(createChat(newChatId));
+  };
+
+  const onCloseModal = () => {
+    dispatch(addChatModal(false));
   };
 
   return ReactDOM.createPortal(
-    <Provider store={store}>
-      <div className="modal">
-        <div className="addChat">
-          <div className="addChat-body">
-            <div className="addChat-title">
-              <h5>Create New Chat</h5>
-              <button type="button" className="close" onClick={onCloseModal}>
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div className="addChat-description">
-              <form onSubmit={onAddChatHandler}>
-                <div className="form-group">
-                  <label>Chat Name</label>
-                  <input
-                    placeholder="Enter Chat Name"
-                    type="text"
-                    value={chatName}
-                    onChange={onChangeHandler}
-                    className="form-control"
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Avatar</label>
-                  <input
-                    type="file"
-                    className="form-control"
-                    accept=".jpg, .jpeg, .png"
-                    value={avatar}
-                    onChange={onLoadAvatar}
-                  />
-                </div>
-              </form>
-            </div>
-            <div className="modalFooter">
-              <button onClick={onAddChatHandler} className="createChat-button">
-                Create Chat
-              </button>
-            </div>
+    <div className="modal">
+      <div className="addChat">
+        <div className="addChat-body">
+          <div className="addChat-title">
+            <h5>Create New Chat</h5>
+            <button type="button" className="close" onClick={onCloseModal}>
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div className="addChat-description">
+            <form onSubmit={onAddChatHandler}>
+              <div className="form-group">
+                <label>Chat Name</label>
+                <input
+                  placeholder="Enter Chat Name"
+                  type="text"
+                  value={chats.draft.title}
+                  onChange={onChangeHandler}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Avatar</label>
+                <input
+                  type="file"
+                  className="form-control"
+                  accept=".jpg, .jpeg, .png"
+                  value={chats.draft.avatar}
+                  onChange={onLoadAvatar}
+                />
+              </div>
+            </form>
+          </div>
+          <div className="modalFooter">
+            <button onClick={onAddChatHandler} className="createChat-button">
+              Create Chat
+            </button>
           </div>
         </div>
       </div>
-    </Provider>,
+    </div>,
     document.getElementById("portal")
   );
 };
 
-export default connect(mapStateToProps)(AddChat);
+export default AddChat;

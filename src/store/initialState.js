@@ -22,6 +22,7 @@ const initialState = {
       draft: "",
       avatar: "tutby.png",
     },
+    draft: {},
   },
   currentChat: {
     currentChatId: 777,
