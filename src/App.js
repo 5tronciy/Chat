@@ -23,7 +23,7 @@ const Router = () => {
     <div className="wrapper">
       <ChatList />
       <Chat />
-      {modal && <AddChat context={modal} />}
+      {modal && <AddChat />}
     </div>
   );
 };
