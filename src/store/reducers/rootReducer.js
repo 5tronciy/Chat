@@ -16,7 +16,9 @@ function currentChatReducer(state = initialState.currentChat, action) {
     case "SET_CURRENT_CHAT":
       return action.currentChat;
     case "VIEW_CHAT":
-      return action.chatId;
+      return produce(state, (draftState) => {
+        draftState.currentChatId = action.chatId;
+      });
     default:
       return state;
   }

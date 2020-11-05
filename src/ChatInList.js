@@ -1,11 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import viewChat from "./store/actionCreators/action_view_chat";
 
 const ChatInList = ({ chat }) => {
   const dispatch = useDispatch();
 
   const onViewChat = (chatId) => {
-    dispatch({ type: "VIEW_CHAT", chatId: chatId });
+    dispatch(viewChat(chatId));
   };
 
   return (
