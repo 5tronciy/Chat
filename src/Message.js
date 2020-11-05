@@ -6,10 +6,7 @@ const Message = ({ message }) => {
   const currentUser = useSelector((state) => state.userProfile);
   const currentChat = useSelector((state) => state.chats[message.from]);
   return (
-    <li
-      key={message.time + message.from}
-      className={message.from === currentUser.id ? "right" : ""}
-    >
+    <li className={message.from === currentUser.id ? "right" : ""}>
       <div className="message">
         <div className="chat-avatar">
           <img

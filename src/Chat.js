@@ -40,7 +40,7 @@ const Chat = () => {
       <div className="chat__conversation">
         <ul className="chat__messages">
           {currentChat.messages.map((message) => (
-            <Message message={message} />
+            <Message message={message} key={message.time + message.from} />
           ))}
         </ul>
       </div>

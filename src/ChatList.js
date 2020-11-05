@@ -24,7 +24,7 @@ const ChatList = () => {
       </div>
       <ul className="chatList">
         {Object.values(chats).map((chat) => (
-          <ChatInList chat={chat} />
+          <ChatInList chat={chat} key={chat.id + chat.title} />
         ))}
       </ul>
     </div>

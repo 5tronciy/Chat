@@ -9,7 +9,7 @@ const ChatInList = ({ chat }) => {
   };
 
   return (
-    <li key={chat.id}>
+    <li>
       <div
         className="chatTitleContainer"
         onClick={() => {
