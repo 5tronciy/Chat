@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ChatInList from "./ChatInList";
-import addChatModal from "./store/actionCreators/action_add_chat_modal";
+import showModalAddChat from "./store/actionCreators/action_show_modal_add_chat";
 
 const ChatList = () => {
   const chats = useSelector((state) => state.chats);
@@ -9,7 +9,7 @@ const ChatList = () => {
   const dispatch = useDispatch();
 
   const onAddChat = () => {
-    dispatch(addChatModal(true));
+    dispatch(showModalAddChat(true));
   };
 
   return (

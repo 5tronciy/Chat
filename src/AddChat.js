@@ -4,7 +4,7 @@ import "./AddChat.css";
 import { useSelector, useDispatch } from "react-redux";
 import chatNameChange from "./store/actionCreators/action_chat_name_change";
 import loadAvatar from "./store/actionCreators/action_load_avatar";
-import addChatModal from "./store/actionCreators/action_add_chat_modal";
+import showModalAddChat from "./store/actionCreators/action_show_modal_add_chat";
 import createChat from "./store/actionCreators/action_create_chat";
 
 const generateId = () => {
@@ -14,8 +14,7 @@ const generateId = () => {
 const AddChat = () => {
   const newChatId = generateId();
   const chats = useSelector((state) => state.chats);
-  // const avatar = useSelector((state) => state.chats.newChatId.avatar);
-  // const chatName = useSelector((state) => state.chats.newChatId.title);
+
   const dispatch = useDispatch();
 
   const onChangeHandler = (event) => {
@@ -35,7 +34,7 @@ const AddChat = () => {
   };
 
   const onCloseModal = () => {
-    dispatch(addChatModal(false));
+    dispatch(showModalAddChat(false));
   };
 
   return ReactDOM.createPortal(

@@ -1,8 +1,8 @@
-function setUser(value) {
+function loginUser(value) {
   return {
-    type: "SET_USER",
+    type: "LOGIN_USER",
     userProfile: value,
   };
 }
 
-export default setUser;
+export default loginUser;
