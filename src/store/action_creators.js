@@ -7,7 +7,7 @@ export function createChat(id) {
 }
 
 export function draftChange(value, currentChatId) {
-  return { type: "DRAFT_CHANGE", message: value, currentChatId };
+  return { type: "DRAFT_CHANGE", message: value, currentChatId: currentChatId };
 }
 
 export function loadAvatar(value) {
@@ -17,8 +17,12 @@ export function loadAvatar(value) {
   };
 }
 
-export function sendMessage(currentChatId) {
-  return { type: "SEND_MESSAGE", currentChatId };
+export function sendMessage(currentChatId, userProfileId) {
+  return {
+    type: "SEND_MESSAGE",
+    currentChatId: currentChatId,
+    userProfileId: userProfileId,
+  };
 }
 
 export function loginUser(value) {

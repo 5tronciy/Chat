@@ -5,18 +5,20 @@ import Message from "./Message";
 import { draftChange, sendMessage } from "./store/action_creators";
 
 const Chat = () => {
-  const onChangeHandle = (event) => {
-    dispatch(draftChange(event.currentTarget.value));
-  };
-
   const currentChatId = useSelector((state) => state.currentChat.currentChatId);
+
+  const currentChat = useSelector((state) => state.chats[currentChatId]);
+
+  const userProfileId = useSelector((state) => state.userProfile.id);
+
+  const onChangeHandle = (event) => {
+    dispatch(draftChange(event.currentTarget.value, currentChatId));
+  };
 
   const onSendMessageHandler = (event) => {
     event.preventDefault();
-    dispatch(sendMessage(currentChatId));
+    dispatch(sendMessage(currentChatId, userProfileId));
   };
-
-  const currentChat = useSelector((state) => state.chats[currentChatId]);
 
   const dispatch = useDispatch();
 

@@ -12,7 +12,7 @@ export function chatsReducer(state = initialState.chats, action) {
         draftState[action.currentChatId].messages.push({
           text: draftState[action.currentChatId].draft,
           time: new Date().toISOString(),
-          from: draftState.userProfile.id,
+          from: action.userProfileId,
         });
         draftState[action.currentChatId].draft = "";
       });
