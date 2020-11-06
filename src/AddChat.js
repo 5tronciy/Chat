@@ -2,10 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./AddChat.css";
 import { useSelector, useDispatch } from "react-redux";
-import chatNameChange from "./store/actionCreators/action_chat_name_change";
-import loadAvatar from "./store/actionCreators/action_load_avatar";
-import showModalAddChat from "./store/actionCreators/action_show_modal_add_chat";
-import createChat from "./store/actionCreators/action_create_chat";
+import {
+  chatNameChange,
+  loadAvatar,
+  showModalAddChat,
+  createChat,
+} from "./store/action_creators";
 
 const generateId = () => {
   return Math.random().toString();

@@ -2,8 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./Chat.css";
 import Message from "./Message";
-import draftChange from "./store/actionCreators/action_draft_change";
-import sendMessage from "./store/actionCreators/action_send_message";
+import { draftChange, sendMessage } from "./store/action_creators";
 
 const Chat = () => {
   const onChangeHandle = (event) => {
