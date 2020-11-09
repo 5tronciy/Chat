@@ -1,13 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./AddChat.css";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  chatNameChange,
-  loadAvatar,
-  showModalAddChat,
-  createChat,
-} from "./store/action_creators";
+import { useDispatch } from "react-redux";
+import { showModalAddChat, createChat } from "./store/action_creators";
 
 const generateId = () => {
   return Math.random().toString();
@@ -15,24 +10,27 @@ const generateId = () => {
 
 const AddChat = () => {
   const newChatId = generateId();
-  const chats = useSelector((state) => state.chats);
-
+  const [newChat, setNewChat] = useState({
+    id: newChatId,
+    title: "",
+    avatar: "",
+  });
   const dispatch = useDispatch();
 
   const onChangeHandler = (event) => {
-    dispatch(chatNameChange(event.currentTarget.value));
+    setNewChat({ ...newChat, title: event.currentTarget.value });
   };
 
   const onLoadAvatar = (event) => {
-    dispatch(loadAvatar(event.currentTarget.value));
+    setNewChat({ ...newChat, avatar: event.currentTarget.value });
   };
 
   const onAddChatHandler = (event) => {
     event.preventDefault();
-    if (chats.draft.title === 0) {
+    if (newChat.title === 0) {
       return;
     }
-    dispatch(createChat(newChatId));
+    dispatch(createChat(newChatId, newChat.title, newChat.avatar));
   };
 
   const onCloseModal = () => {
@@ -56,7 +54,7 @@ const AddChat = () => {
                 <input
                   placeholder="Enter Chat Name"
                   type="text"
-                  value={chats.draft.title}
+                  value={newChat.title}
                   onChange={onChangeHandler}
                   className="form-control"
                 />
@@ -67,7 +65,7 @@ const AddChat = () => {
                   type="file"
                   className="form-control"
                   accept=".jpg, .jpeg, .png"
-                  value={chats.draft.avatar}
+                  value={newChat.avatar}
                   onChange={onLoadAvatar}
                 />
               </div>

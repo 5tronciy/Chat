@@ -16,24 +16,16 @@ export function chatsReducer(state = initialState.chats, action) {
         });
         draftState[action.currentChatId].draft = "";
       });
-    case "CHAT_NAME_CHANGE":
-      return produce(state, (draftState) => {
-        draftState.draft.title = action.title;
-      });
-    case "LOAD_AVATAR":
-      return produce(state, (draftState) => {
-        draftState.draft.avatar = action.avatar;
-      });
     case "CREATE_CHAT":
-      return produce(state, (draftState) => {
-        draftState[action.currentChatId].push({
-          title: draftState.draft.title,
+      return {
+        [action.id]: {
+          title: action.title,
           id: action.id,
           messages: [],
           draft: "",
-          avatar: draftState.draft.avatar,
-        });
-      });
+          avatar: action.avatar,
+        },
+      };
     default:
       return state;
   }

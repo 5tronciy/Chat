@@ -2,8 +2,8 @@ export function chatNameChange(value) {
   return { type: "CHAT_NAME_CHANGE", title: value };
 }
 
-export function createChat(id) {
-  return { type: "CREATE_CHAT", id: id };
+export function createChat(id, title, avatar) {
+  return { type: "CREATE_CHAT", id: id, title: title, avatar: avatar };
 }
 
 export function draftChange(value, currentChatId) {
