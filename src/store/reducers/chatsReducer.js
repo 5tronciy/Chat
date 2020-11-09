@@ -18,6 +18,7 @@ export function chatsReducer(state = initialState.chats, action) {
       });
     case "CREATE_CHAT":
       return {
+        ...state,
         [action.id]: {
           title: action.title,
           id: action.id,

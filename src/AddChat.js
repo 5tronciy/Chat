@@ -10,11 +10,13 @@ const generateId = () => {
 
 const AddChat = () => {
   const newChatId = generateId();
+
   const [newChat, setNewChat] = useState({
     id: newChatId,
     title: "",
     avatar: "",
   });
+
   const dispatch = useDispatch();
 
   const onChangeHandler = (event) => {
@@ -31,6 +33,7 @@ const AddChat = () => {
       return;
     }
     dispatch(createChat(newChatId, newChat.title, newChat.avatar));
+    onCloseModal();
   };
 
   const onCloseModal = () => {
