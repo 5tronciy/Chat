@@ -27,6 +27,11 @@ export function chatsReducer(state = initialState.chats, action) {
           avatar: action.avatar,
         },
       };
+    case "FETCH_CHATS":
+      return action.chats.reduce((chats, chat) => {
+        chats[chat.id] = chat;
+        return chats;
+      });
     default:
       return state;
   }

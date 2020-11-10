@@ -1,3 +1,5 @@
+import { chatsReducer } from "./reducers/chatsReducer";
+
 export function chatNameChange(value) {
   return { type: "CHAT_NAME_CHANGE", title: value };
 }
@@ -41,4 +43,8 @@ export function showModalAddChat(value) {
 
 export function viewChat(chatId) {
   return { type: "VIEW_CHAT", chatId: chatId };
+}
+
+export function fetchChats(chats) {
+  return { type: "FETCH_CHATS", chats: chats };
 }

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AddChat from "./AddChat";
 import Chat from "./Chat";
 import ChatList from "./ChatList";
-//import axios from "axios";
+
 import { useSelector } from "react-redux";
 
 export const getTime = (isoTime) => {
@@ -11,12 +11,11 @@ export const getTime = (isoTime) => {
 };
 
 const Router = () => {
-  /*axios
-    .get(`https://github.com/5tronciy/JSON_Server/blob/[main|master]/db.json`)
-    .then((res) => {
-      const posts = res.data.data.children.map((obj) => obj.data);
-      setState({ posts });
-    });*/
+  useEffect(async () => {
+    const chatsResponse = await fetch("http://localhost:3000/chats");
+    dispatch(fetchChats(), await chatsResponse.json();
+  }, []);
+
   const modal = useSelector((state) => state.modal);
   return (
     <div className="wrapper">

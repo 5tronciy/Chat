@@ -1,0 +1,45 @@
+const http = require("http");
+const server = http.createServer((req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  req.url === "/chats"
+    ? res.end(JSON.stringify(getChats(2)))
+    : res.end("Hello world");
+});
+server.listen(3000);
+
+let state = {
+  users: {
+    1: { id: "1", nickName: "Alfons", avatar: "pahonia.png", chatIds: ["777"] },
+    2: { id: "2", nickName: "Nick", avatar: "pahonia.png", chatIds: ["888"] },
+    3: { id: "3", nickName: "Mike", avatar: "pahonia.png", chatIds: ["777"] },
+  },
+  chats: {
+    777: {
+      title: "nexta",
+      id: "777",
+      messages: [
+        { time: "2020-09-30T20:00", from: "777", text: "Hello" },
+        { time: "2020-08-30T24:00", from: "888", text: "Hi" },
+      ],
+      draft: "",
+      avatar: "nexta.png",
+    },
+    888: {
+      title: "tutBY",
+      id: "888",
+      messages: [{ time: "2020-08-30T24:00", from: "888", text: "Hi" }],
+      draft: "",
+      avatar: "tutby.png",
+    },
+  },
+  currentChat: {
+    currentChatId: 777,
+  },
+};
+
+const getChats = (userId) => {
+  const chatIds = state.users[userId].chatIds;
+  return chatIds.map((chatId) => {
+    return state.chats[chatId];
+  });
+};
