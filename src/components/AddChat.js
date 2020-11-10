@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import "./AddChat.css";
+import "../styles/AddChat.css";
 import { useDispatch } from "react-redux";
-import { showModalAddChat, createChat } from "./store/action_creators";
+import {
+  showModalAddChat,
+  createChat,
+  viewChat,
+} from "../store/action_creators";
 
 const generateId = () => {
   return Math.random().toString();
@@ -34,6 +38,7 @@ const AddChat = () => {
     }
     dispatch(createChat(newChatId, newChat.title, newChat.avatar));
     onCloseModal();
+    dispatch(viewChat(newChatId));
   };
 
   const onCloseModal = () => {

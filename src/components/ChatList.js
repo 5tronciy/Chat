@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ChatInList from "./ChatInList";
-import { showModalAddChat } from "./store/action_creators";
+import { showModalAddChat } from "../store/action_creators";
 
 const ChatList = () => {
   const chats = useSelector((state) => state.chats);

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { viewChat } from "./store/action_creators";
+import { viewChat } from "../store/action_creators";
 
 const ChatInList = ({ chat }) => {
   const dispatch = useDispatch();
