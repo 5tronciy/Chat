@@ -1,0 +1,32 @@
+.message {
+  margin-bottom: 24px;
+  display: inline-flex;
+  align-items: flex-end;
+}
+
+.avatar {
+  order: 3;
+  margin-left: 16px;
+}
+
+.messageTextWrapper {
+  text-align: initial;
+  margin-bottom: 10px;
+}
+
+.messageTextContent {
+  background-color: #36404a;
+  color: #eff2f7;
+  border-radius: 8px 8px 0 8px;
+  padding: 12px 20px;
+}
+
+.messageTime {
+  font-size: 12px;
+  color: #abb4d2;
+}
+
+.conversationName {
+  font-weight: 500;
+  font-size: 14px;
+}
