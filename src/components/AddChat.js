@@ -37,11 +37,11 @@ const AddChat = () => {
       return;
     }
     dispatch(createChat(newChatId, newChat.title, newChat.avatar));
-    onCloseModal();
+    onCloseModalAddChat();
     dispatch(viewChat(newChatId));
   };
 
-  const onCloseModal = () => {
+  const onCloseModalAddChat = () => {
     dispatch(showModalAddChat(false));
   };
 
@@ -51,7 +51,11 @@ const AddChat = () => {
         <div className="addChat-body">
           <div className="addChat-title">
             <h5>Create New Chat</h5>
-            <button type="button" className="close" onClick={onCloseModal}>
+            <button
+              type="button"
+              className="close"
+              onClick={onCloseModalAddChat}
+            >
               <span aria-hidden="true">×</span>
             </button>
           </div>

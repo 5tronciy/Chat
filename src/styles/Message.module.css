@@ -30,3 +30,12 @@
   font-weight: 500;
   font-size: 14px;
 }
+
+.avatarImage {
+  line-height: 1.5;
+  border-style: none;
+  vertical-align: middle;
+  border-radius: 50%;
+  height: 2.2rem;
+  width: 2.2rem;
+}

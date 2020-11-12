@@ -31,7 +31,7 @@ export function chatsReducer(state = initialState.chats, action) {
       return action.chats.reduce((chats, chat) => {
         chats[chat.id] = chat;
         return chats;
-      });
+      }, {});
     default:
       return state;
   }

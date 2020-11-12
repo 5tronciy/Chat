@@ -1,15 +1,21 @@
-const http = require("http");
-const server = http.createServer((req, res) => {
+import { createServer } from "http";
+
+const server = createServer((req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   req.url === "/chats"
-    ? res.end(JSON.stringify(getChats(2)))
+    ? res.end(JSON.stringify(getChats(1)))
     : res.end("Hello world");
 });
 server.listen(3000);
 
 let state = {
   users: {
-    1: { id: "1", nickName: "Alfons", avatar: "pahonia.png", chatIds: ["777"] },
+    1: {
+      id: "1",
+      nickName: "Alfons",
+      avatar: "pahonia.png",
+      chatIds: ["777", "888"],
+    },
     2: { id: "2", nickName: "Nick", avatar: "pahonia.png", chatIds: ["888"] },
     3: { id: "3", nickName: "Mike", avatar: "pahonia.png", chatIds: ["777"] },
   },
