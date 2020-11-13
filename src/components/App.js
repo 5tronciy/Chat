@@ -20,7 +20,7 @@ const Router = () => {
     dispatch(fetchChats(await chatsResponse.json()));
   }, [dispatch]);
 
-  const modalAddChat = useSelector((state) => state.modalAddChat);
+  const modalAddChat = useSelector((state) => state.modal);
   return (
     <div className={styles.wrapper}>
       <ChatList />
