@@ -4,6 +4,7 @@ import Chat from "./Chat";
 import ChatList from "./ChatList";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchChats } from "../store/action_creators";
+import styles from "./App.module.css";
 
 export const getTime = (isoTime) => {
   const time = new Date(isoTime);
@@ -21,7 +22,7 @@ const Router = () => {
 
   const modalAddChat = useSelector((state) => state.modalAddChat);
   return (
-    <div className="wrapper">
+    <div className={styles.wrapper}>
       <ChatList />
       <Chat />
       {modalAddChat && <AddChat />}

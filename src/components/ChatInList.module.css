@@ -1,0 +1,47 @@
+.chatTitleContainer {
+  padding: 15px 20px;
+  color: #abb4d2;
+  transition: all 0.4s;
+  border-top: 1px solid #303841;
+  border-radius: 4px;
+}
+
+.chatTitleContainer:hover {
+  text-decoration: none;
+  outline: none;
+  color: #abb4d2;
+  transition: all 0.4s;
+  border-radius: 4px;
+  background-color: #36404a;
+  cursor: pointer;
+}
+
+.media {
+  display: flex;
+  align-items: flex-start;
+}
+
+.chatImage {
+  position: relative;
+  margin-right: 1rem;
+  align-self: center;
+}
+
+.avatar {
+  line-height: 1.5;
+  border-style: none;
+  vertical-align: middle;
+  border-radius: 50%;
+  height: 2.2rem;
+  width: 2.2rem;
+}
+
+.chatTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 0;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+  font-size: 15px;
+}

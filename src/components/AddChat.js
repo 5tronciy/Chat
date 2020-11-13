@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import "../styles/AddChat.css";
+import styles from "./AddChat.module.css";
 import { useDispatch } from "react-redux";
 import {
   showModalAddChat,
@@ -46,36 +46,36 @@ const AddChat = () => {
   };
 
   return ReactDOM.createPortal(
-    <div className="modal">
-      <div className="addChat">
-        <div className="addChat-body">
-          <div className="addChat-title">
-            <h5>Create New Chat</h5>
+    <div className={styles.modal}>
+      <div className={styles.addChat}>
+        <div className={styles.addChatBody}>
+          <div className={styles.addChatTitle}>
+            <h5 className={styles.addChatTitleText}>Create New Chat</h5>
             <button
               type="button"
-              className="close"
+              className={styles.close}
               onClick={onCloseModalAddChat}
             >
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div className="addChat-description">
+          <div className={styles.addChatDescription}>
             <form onSubmit={onAddChatHandler}>
-              <div className="form-group">
-                <label>Chat Name</label>
+              <div className={styles.formGroup}>
+                <label className={styles.inputLabel}>Chat Name</label>
                 <input
                   placeholder="Enter Chat Name"
                   type="text"
                   value={newChat.title}
                   onChange={onChangeHandler}
-                  className="form-control"
+                  className={styles.formControl}
                 />
               </div>
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label>Avatar</label>
                 <input
                   type="file"
-                  className="form-control"
+                  className={styles.formControl}
                   accept=".jpg, .jpeg, .png"
                   value={newChat.avatar}
                   onChange={onLoadAvatar}
@@ -83,8 +83,11 @@ const AddChat = () => {
               </div>
             </form>
           </div>
-          <div className="modalFooter">
-            <button onClick={onAddChatHandler} className="createChat-button">
+          <div className={styles.modalFooter}>
+            <button
+              onClick={onAddChatHandler}
+              className={styles.createChatButton}
+            >
               Create Chat
             </button>
           </div>

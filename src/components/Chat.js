@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "../styles/Chat.css";
+import styles from "./Chat.module.css";
 import Message from "./Message";
 import { draftChange, sendMessage } from "../store/action_creators";
 
@@ -23,42 +23,42 @@ const Chat = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="chat">
-      <div className="chat__chatTitle">
-        <div className="chat__media">
-          <div className="chat-img">
+    <div className={styles.chat}>
+      <div className={styles.chatTitle}>
+        <div className={styles.media}>
+          <div className={styles.image}>
             <img
-              className="avatar"
+              className={styles.avatar}
               src={process.env.PUBLIC_URL + `/` + currentChat.avatar}
               alt="chat-img"
             />
           </div>
           <div>
-            <h5 className="chatTitle">{currentChat.title}</h5>
+            <h5 className={styles.chatTitleText}>{currentChat.title}</h5>
           </div>
         </div>
       </div>
-      <div className="chat__conversation">
-        <ul className="chat__messages">
+      <div className={styles.conversation}>
+        <ul className={styles.messages}>
           {currentChat.messages.map((message) => (
             <Message message={message} key={message.time + message.from} />
           ))}
         </ul>
       </div>
-      <div className="chat__footer">
+      <div className={styles.footer}>
         <form onSubmit={onSendMessageHandler}>
-          <div className="chat__footer-input">
-            <div className="chat__footer-inputWidth">
+          <div className={styles.footerInput}>
+            <div className={styles.footerInputWidth}>
               <input
                 type="text"
                 placeholder="Enter Message..."
-                className="form-control"
+                className={styles.formControl}
                 value={currentChat.draft}
                 onChange={onChangeHandle}
               />
             </div>
-            <div className="chat__footer-buttons">
-              <button type="submit" className="button-primary">
+            <div className={styles.footerButtons}>
+              <button type="submit" className={styles.buttonPrimary}>
                 {">"}
               </button>
             </div>

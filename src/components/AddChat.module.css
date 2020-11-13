@@ -22,7 +22,7 @@
   transform: none;
 }
 
-.addChat-body {
+.addChatBody {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@
   outline: 0;
 }
 
-.addChat-title {
+.addChatTitle {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -48,7 +48,7 @@
   font-size: 16px !important;
 }
 
-h5 {
+.addChatTitleText {
   font-size: 1.17188rem;
   margin-bottom: 0;
   line-height: 1.5;
@@ -83,7 +83,7 @@ h5 {
   opacity: 0.75;
 }
 
-.addChat-description {
+.addChatDescription {
   color: #a6b0cf;
   pointer-events: auto;
   box-sizing: border-box;
@@ -92,20 +92,20 @@ h5 {
   padding: 1.5rem !important;
 }
 
-.form-group {
+.formGroup {
   color: #a6b0cf;
   pointer-events: auto;
   box-sizing: border-box;
   margin-bottom: 1.5rem !important;
 }
 
-label {
+.inputLabel {
   font-weight: 500;
   display: inline-block;
   margin-bottom: 0.5rem;
 }
 
-.form-control {
+.formControl {
   margin: 0;
   font-family: inherit;
   overflow: visible;
@@ -124,7 +124,7 @@ label {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.form-control:focus {
+.formControl:focus {
   margin: 0;
   font-family: inherit;
   overflow: visible;
@@ -164,7 +164,7 @@ label {
   border-bottom-left-radius: calc(0.3rem - 1px);
 }
 
-.createChat-button {
+.createChatButton {
   border: 1px solid transparent;
   padding: 0.47rem 0.75rem;
   font-size: 0.9375rem;
@@ -179,7 +179,7 @@ label {
   cursor: pointer;
 }
 
-.createChat-button:hover {
+.createChatButton:hover {
   border: 1px solid transparent;
   padding: 0.47rem 0.75rem;
   font-size: 0.9375rem;

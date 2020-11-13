@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { viewChat } from "../store/action_creators";
+import styles from "./ChatInList.module.css";
 
 const ChatInList = ({ chat }) => {
   const dispatch = useDispatch();
@@ -12,21 +13,21 @@ const ChatInList = ({ chat }) => {
   return (
     <li>
       <div
-        className="chatTitleContainer"
+        className={styles.chatTitleContainer}
         onClick={() => {
           onViewChat(chat.id);
         }}
       >
-        <div className="media">
-          <div className="chat-img">
+        <div className={styles.media}>
+          <div className={styles.chatImage}>
             <img
-              className="avatar"
+              className={styles.avatar}
               src={process.env.PUBLIC_URL + `/` + chat.avatar}
               alt="chat-img"
             />
           </div>
           <div>
-            <h5 className="chatTitle">{chat.title}</h5>
+            <h5 className={styles.chatTitle}>{chat.title}</h5>
           </div>
         </div>
       </div>

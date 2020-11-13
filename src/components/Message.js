@@ -1,7 +1,7 @@
 import React from "react";
 import { getTime } from "./App";
 import { useSelector } from "react-redux";
-import styles from "../styles/Message.module.css";
+import styles from "./Message.module.css";
 
 const Message = ({ message }) => {
   const currentUser = useSelector((state) => state.userProfile);
