@@ -5,19 +5,17 @@
 }
 
 .avatar {
-  order: 3;
-  margin-left: 16px;
+  margin-right: 16px;
 }
 
 .messageTextWrapper {
-  text-align: initial;
   margin-bottom: 10px;
 }
 
 .messageTextContent {
-  background-color: #36404a;
+  background-color: #7269ef;
   color: #eff2f7;
-  border-radius: 8px 8px 0 8px;
+  border-radius: 8px 8px 8px 0;
   padding: 12px 20px;
 }
 
@@ -27,7 +25,6 @@
 }
 
 .conversationName {
-  font-weight: 500;
   font-size: 14px;
 }
 

@@ -16,12 +16,12 @@ const ChatList = () => {
   return (
     <div className={styles.chats}>
       <div className={styles.listTitleMargins}>
-        <div id="addChat">
-          <button className={styles.addChat} onClick={onAddChat}>
+        <span className={styles.listTitle}>Chats</span>
+        <div className={styles.addChat}>
+          <button className={styles.addChatButton} onClick={onAddChat}>
             Add chat
           </button>
         </div>
-        <h4 className={styles.listTitle}>Chats</h4>
       </div>
       <ul className={styles.chatList}>
         {Object.values(chats).map((chat) => (
