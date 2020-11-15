@@ -10,3 +10,23 @@ body {
   color: #a6b0cf;
   background-color: #303841;
 }
+
+/* The emerging W3C standard
+   that is currently Firefox-only */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #a6b0cf #262e35;
+}
+
+/* Works on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+*::-webkit-scrollbar-track {
+  background: #262e35;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #a6b0cf;
+  border-radius: 20px;
+  border: 3px solid #262e35;
+}

@@ -43,6 +43,7 @@
 .conversation {
   padding: 1.5rem;
   height: calc(100vh - 184px);
+  overflow-y: auto;
 }
 
 .messages {
