@@ -7,10 +7,7 @@ import {
   createChat,
   viewChat,
 } from "../store/action_creators";
-
-const generateId = () => {
-  return Math.random().toString();
-};
+import { generateId } from "./module";
 
 const AddChat = () => {
   const newChatId = generateId();

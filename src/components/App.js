@@ -6,11 +6,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchChats } from "../store/action_creators";
 import styles from "./App.module.css";
 
-export const getTime = (isoTime) => {
-  const time = new Date(isoTime);
-  return `${time.getHours()}:${time.getMinutes().toString().padStart(2, "0")}`;
-};
-
 const Router = () => {
   const dispatch = useDispatch();
 

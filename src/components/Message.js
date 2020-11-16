@@ -1,5 +1,5 @@
 import React from "react";
-import { getTime } from "./App";
+import { getTime } from "./module";
 import { useSelector } from "react-redux";
 import styles from "./Message.module.css";
 
