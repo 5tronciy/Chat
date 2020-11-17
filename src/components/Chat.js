@@ -1,19 +1,17 @@
-import React, { useReducer } from "react";
-import { useSelector } from "react-redux";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import styles from "./Chat.module.css";
 import Message from "./Message";
 import { draftChange, sendMessage } from "../store/action_creators";
-import initialState from "../store/initialState";
-import { chatsReducer } from "../store/reducers/chatsReducer";
 
 const Chat = () => {
-  const [state, dispatch] = useReducer(chatsReducer, initialState);
+  const dispatch = useDispatch();
 
-  const currentChatId = useSelector(() => state.currentChat.currentChatId);
+  const currentChatId = useSelector((state) => state.currentChat.currentChatId);
 
-  const currentChat = useSelector(() => state.chats[currentChatId]);
+  const currentChat = useSelector((state) => state.chats[currentChatId]);
 
-  const userProfileId = useSelector(() => state.userProfile.id);
+  const userProfileId = useSelector((state) => state.userProfile.id);
 
   const onChangeHandle = (event) => {
     dispatch(draftChange(event.currentTarget.value, currentChatId));
