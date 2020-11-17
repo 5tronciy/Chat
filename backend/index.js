@@ -1,6 +1,5 @@
-import { createServer } from "http";
-
-const server = createServer((req, res) => {
+const http = require("http");
+const server = http.createServer((req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   req.url === "/chats"
     ? res.end(JSON.stringify(getChats(1)))
