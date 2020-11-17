@@ -36,3 +36,23 @@
   height: 2.2rem;
   width: 2.2rem;
 }
+
+.right {
+  flex-direction: row-reverse;
+  display: flex;
+}
+
+.right .messageTextContent {
+  background-color: #36404a;
+  border-radius: 8px 8px 0 8px;
+}
+
+.right .avatar {
+  margin-right: 0px;
+  margin-left: 16px;
+  order: 1;
+}
+
+.right .conversationName {
+  text-align: end;
+}

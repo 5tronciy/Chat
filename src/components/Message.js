@@ -7,7 +7,7 @@ const Message = ({ message }) => {
   const currentUser = useSelector((state) => state.userProfile);
   const currentChat = useSelector((state) => state.chats[message.from]);
   return (
-    <li className={message.from === currentUser.id ? "right" : ""}>
+    <li className={message.from === currentUser.id ? styles.right : ""}>
       <div className={styles.message}>
         <div className={styles.avatar}>
           <img
@@ -25,7 +25,7 @@ const Message = ({ message }) => {
         <div className={styles.messageContent}>
           <div className={styles.messageTextWrapper}>
             <div className={styles.messageTextContent}>
-              <div>{message.text} </div>
+              <span>{message.text} </span>
               <div className={styles.messageTime}>{getTime(message.time)}</div>
             </div>
           </div>
