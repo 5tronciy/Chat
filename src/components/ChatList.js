@@ -4,7 +4,7 @@ import ChatInList from "./ChatInList";
 import { showModalAddChat } from "../store/action_creators";
 import styles from "./ChatList.module.css";
 
-const ChatList = () => {
+const ChatListConnected = () => {
   const chats = useSelector((state) => state.chats);
 
   const dispatch = useDispatch();
@@ -13,6 +13,10 @@ const ChatList = () => {
     dispatch(showModalAddChat(true));
   };
 
+  return <ChatList onAddChat={onAddChat} chats={chats} />;
+};
+
+export const ChatList = ({ onAddChat, chats }) => {
   return (
     <div className={styles.chats}>
       <div className={styles.listTitleMargins}>
@@ -32,4 +36,4 @@ const ChatList = () => {
   );
 };
 
-export default ChatList;
+export default ChatListConnected;

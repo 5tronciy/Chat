@@ -1,11 +1,21 @@
 import React from "react";
-import { getTime } from "./module";
+import { getTime } from "./utils.module";
 import { useSelector } from "react-redux";
 import styles from "./Message.module.css";
 
-const Message = ({ message }) => {
+const MessageConnected = ({ message }) => {
   const currentUser = useSelector((state) => state.userProfile);
   const currentChat = useSelector((state) => state.chats[message.from]);
+  return (
+    <Message
+      message={message}
+      currentUser={currentUser}
+      currentChat={currentChat}
+    />
+  );
+};
+
+export const Message = ({ message, currentUser, currentChat }) => {
   return (
     <li className={message.from === currentUser.id ? styles.right : ""}>
       <div className={styles.message}>
@@ -39,4 +49,4 @@ const Message = ({ message }) => {
     </li>
   );
 };
-export default Message;
+export default MessageConnected;

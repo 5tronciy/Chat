@@ -3,13 +3,17 @@ import { useDispatch } from "react-redux";
 import { viewChat } from "../store/action_creators";
 import styles from "./ChatInList.module.css";
 
-const ChatInList = ({ chat }) => {
+const ChatInListConnected = ({ chat }) => {
   const dispatch = useDispatch();
 
   const onViewChat = (chatId) => {
     dispatch(viewChat(chatId));
   };
 
+  return <ChatInList chat={chat} onViewChat={onViewChat} />;
+};
+
+export const ChatInList = ({ chat, onViewChat }) => {
   return (
     <li>
       <div
@@ -35,4 +39,4 @@ const ChatInList = ({ chat }) => {
   );
 };
 
-export default ChatInList;
+export default ChatInListConnected;

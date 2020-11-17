@@ -4,7 +4,7 @@ import styles from "./Chat.module.css";
 import Message from "./Message";
 import { draftChange, sendMessage } from "../store/action_creators";
 
-const Chat = () => {
+const ChatConnected = () => {
   const dispatch = useDispatch();
 
   const currentChatId = useSelector((state) => state.currentChat.currentChatId);
@@ -22,6 +22,16 @@ const Chat = () => {
     dispatch(sendMessage(currentChatId, userProfileId));
   };
 
+  return (
+    <Chat
+      currentChat={currentChat}
+      onSendMessageHandler={onSendMessageHandler}
+      onChangeHandle={onChangeHandle}
+    />
+  );
+};
+
+export const Chat = ({ currentChat, onSendMessageHandler, onChangeHandle }) => {
   return (
     <div className={styles.chat}>
       <div className={styles.chatTitle}>
@@ -69,4 +79,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default ChatConnected;

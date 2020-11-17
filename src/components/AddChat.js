@@ -7,9 +7,9 @@ import {
   createChat,
   viewChat,
 } from "../store/action_creators";
-import { generateId } from "./module";
+import { generateId } from "./utils.module";
 
-const AddChat = () => {
+const AddChatConnected = () => {
   const newChatId = generateId();
 
   const [newChat, setNewChat] = useState({
@@ -41,7 +41,24 @@ const AddChat = () => {
   const onCloseModalAddChat = () => {
     dispatch(showModalAddChat(false));
   };
+  return (
+    <AddChat
+      onCloseModalAddChat={onCloseModalAddChat}
+      onAddChatHandler={onAddChatHandler}
+      newChat={newChat}
+      onChangeHandler={onChangeHandler}
+      onLoadAvatar={onLoadAvatar}
+    />
+  );
+};
 
+export const AddChat = ({
+  onCloseModalAddChat,
+  onAddChatHandler,
+  newChat,
+  onChangeHandler,
+  onLoadAvatar,
+}) => {
   return ReactDOM.createPortal(
     <div className={styles.modal}>
       <div className={styles.addChat}>
@@ -95,4 +112,4 @@ const AddChat = () => {
   );
 };
 
-export default AddChat;
+export default AddChatConnected;

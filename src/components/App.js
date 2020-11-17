@@ -6,16 +6,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchChats } from "../store/action_creators";
 import styles from "./App.module.css";
 
-const Router = () => {
+const RouterConnected = () => {
   const dispatch = useDispatch();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(async () => {
-    const chatsResponse = await fetch("http://localhost:3000/chats");
-    dispatch(fetchChats(await chatsResponse.json()));
+  useEffect(() => {
+    async function fetchData() {
+      const chatsResponse = await fetch("http://localhost:3000/chats");
+      dispatch(fetchChats(await chatsResponse.json()));
+    }
+    fetchData();
   }, [dispatch]);
 
   const modalAddChat = useSelector((state) => state.modal);
+  return <Router modalAddChat={modalAddChat} />;
+};
+
+export const Router = ({ modalAddChat }) => {
   return (
     <div className={styles.wrapper}>
       <ChatList />
@@ -25,4 +32,4 @@ const Router = () => {
   );
 };
 
-export default Router;
+export default RouterConnected;
