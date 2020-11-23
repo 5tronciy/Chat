@@ -1,39 +1,8 @@
-// const http = require("http");
-// const server = http.createServer((req, res) => {
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   req.url === "/chats"
-//     ? res.end(JSON.stringify(getChats(1)))
-//     : res.end("Hello world");
-// });
-// server.listen(3000);
+const koa = require("koa");
+const router = require("koa-router");
+const app = new koa();
 
-const Koa = require("koa");
-const app = new Koa();
-
-// logger
-
-app.use(async (ctx, next) => {
-  await next();
-  const rt = ctx.response.get("X-Response-Time");
-  console.log(`${ctx.method} ${ctx.url} - ${rt}`);
-});
-
-// x-response-time
-
-app.use(async (ctx, next) => {
-  const start = Date.now();
-  await next();
-  const ms = Date.now() - start;
-  ctx.set("X-Response-Time", `${ms}ms`);
-});
-
-// response
-
-app.use(async (ctx) => {
-  ctx.body = "Hello, World!";
-});
-
-app.listen(3000);
+const _ = new router(); //Instantiate the router
 
 let state = {
   users: {
@@ -70,9 +39,32 @@ let state = {
   },
 };
 
-const getChats = (userId) => {
-  const chatIds = state.users[userId].chatIds;
-  return chatIds.map((chatId) => {
+// logger
+
+app.use(async (ctx, next) => {
+  await next();
+  const rt = ctx.response.get("X-Response-Time");
+  console.log(`${ctx.method} ${ctx.url} - ${rt}`);
+});
+
+// x-response-time
+
+app.use(async (ctx, next) => {
+  const start = Date.now();
+  await next();
+  const ms = Date.now() - start;
+  ctx.set("X-Response-Time", `${ms}ms`);
+});
+
+// response
+
+const getChats = (ctx) => {
+  const chatIds = state.users[1].chatIds;
+  ctx.body = chatIds.map((chatId) => {
     return state.chats[chatId];
   });
 };
+
+_.get("/chats", getChats);
+app.use(_.routes()); //Use the routes defined using the router
+app.listen(3000);
