@@ -59,12 +59,13 @@ app.use(async (ctx, next) => {
 // response
 
 const getChats = (ctx) => {
-  const chatIds = state.users[1].chatIds;
+  const chatIds = state.users[ctx.params.id].chatIds;
   ctx.body = chatIds.map((chatId) => {
     return state.chats[chatId];
   });
 };
 
-_.get("/chats", getChats);
-app.use(_.routes()); //Use the routes defined using the router
+_.get("/chats/:id", getChats);
+
+app.use(_.routes());
 app.listen(3000);
