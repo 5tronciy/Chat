@@ -1,8 +1,12 @@
 const koa = require("koa");
 const router = require("koa-router");
 const serve = require("koa-static");
+const session = require("koa-session");
 
 const app = new koa();
+
+// app.keys = ["Some keys"];
+// app.use(session(app));
 
 const _ = new router(); //Instantiate the router
 
@@ -70,15 +74,24 @@ const getChats = (ctx) => {
 _.get("/chats/:id", getChats);
 
 const setACookie = (ctx) => {
-  ctx.cookies.set("foo", "bar", {
+  ctx.cookies.set("name", "value", {
     httpOnly: false,
-    expires: 360000 + Date.now(),
+    // expires: 360000 + Date.now(),
   });
-  ctx.body = "cookie set";
-  console.log("Cookies: foo = ", ctx.cookies.get("foo"));
 };
 
 _.get("/", setACookie);
+
+// app.use((ctx) => {
+//   var n = ctx.session.views || 0;
+//   ctx.session.views = ++n;
+
+//   if (n === 1) {
+//     ctx.body = "Welcome here for the first time!";
+//   } else {
+//     ctx.body = "You've visited this page " + n + " times!";
+//   }
+// });
 
 app.use(_.routes());
 
