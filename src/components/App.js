@@ -9,14 +9,18 @@ import styles from "./App.module.css";
 const RouterConnected = () => {
   const dispatch = useDispatch();
 
+  const userProfileId = useSelector((state) => state.userProfile.id);
+  debugger;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     async function fetchData() {
-      const chatsResponse = await fetch("http://localhost:3000/chats");
+      const chatsResponse = await fetch(
+        "http://localhost:3000/chats/" + userProfileId
+      );
       dispatch(fetchChats(await chatsResponse.json()));
     }
     fetchData();
-  }, [dispatch]);
+  }, [dispatch, userProfileId]);
 
   const modalAddChat = useSelector((state) => state.modal);
   return <Router modalAddChat={modalAddChat} />;
