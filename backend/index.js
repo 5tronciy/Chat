@@ -1,5 +1,7 @@
 const koa = require("koa");
 const router = require("koa-router");
+const serve = require("koa-static");
+
 const app = new koa();
 
 const _ = new router(); //Instantiate the router
@@ -67,5 +69,20 @@ const getChats = (ctx) => {
 
 _.get("/chats/:id", getChats);
 
+const setACookie = (ctx) => {
+  ctx.cookies.set("foo", "bar", {
+    httpOnly: false,
+    expires: 360000 + Date.now(),
+  });
+  ctx.body = "cookie set";
+  console.log("Cookies: foo = ", ctx.cookies.get("foo"));
+};
+
+_.get("/", setACookie);
+
 app.use(_.routes());
+
+app.use(serve("./public"));
+app.use(serve("./backend/images"));
+
 app.listen(3000);
