@@ -1,4 +1,11 @@
-const initialState = {
+type state = {userProfile:{id:string
+nickName: string
+avatar:string}
+chats:{}
+currentChat:{}
+}
+
+const initialState:state = {
   userProfile: {
     id: "1",
     nickName: "Alfons",
