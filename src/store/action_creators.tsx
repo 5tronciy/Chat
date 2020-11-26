@@ -1,12 +1,12 @@
-export function chatNameChange(value) {
+export function chatNameChange(value:any) {
   return { type: "CHAT_NAME_CHANGE", title: value };
 }
 
-export function createChat(id, title, avatar) {
+export function createChat(id:any, title:any, avatar:any) {
   return { type: "CREATE_CHAT", id: id, title: title, avatar: avatar };
 }
 
-export function draftChange(value, currentChatId) {
+export function draftChange(value:any, currentChatId:any) {
   return {
     type: "DRAFT_CHANGE",
     message: value,
@@ -14,14 +14,14 @@ export function draftChange(value, currentChatId) {
   };
 }
 
-export function loadAvatar(value) {
+export function loadAvatar(value:any) {
   return {
     type: "LOAD_AVATAR",
     avatar: value,
   };
 }
 
-export function sendMessage(currentChatId, userProfileId) {
+export function sendMessage(currentChatId:any, userProfileId:any) {
   return {
     type: "SEND_MESSAGE",
     currentChatId: currentChatId,
@@ -29,24 +29,24 @@ export function sendMessage(currentChatId, userProfileId) {
   };
 }
 
-export function loginUser(value) {
+export function loginUser(value:any) {
   return {
     type: "LOGIN_USER",
     userProfile: value,
   };
 }
 
-export function showModalAddChat(value) {
+export function showModalAddChat(value:any) {
   return {
     type: "SHOW_MODAL_ADD_CHAT",
     modal: value,
   };
 }
 
-export function viewChat(chatId) {
+export function viewChat(chatId:any) {
   return { type: "VIEW_CHAT", chatId: chatId };
 }
 
-export function fetchChats(chats) {
+export function fetchChats(chats:any) {
   return { type: "FETCH_CHATS", chats: chats };
 }

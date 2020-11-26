@@ -1,14 +1,14 @@
 import initialState from "../initialState";
 import produce from "immer";
 
-export function chatsReducer(state = initialState.chats, action) {
+export function chatsReducer(state = initialState.chats, action:any) {
   switch (action.type) {
     case "DRAFT_CHANGE":
-      return produce(state, (draftState) => {
+      return produce(state, (draftState:any) => {
         draftState[action.currentChatId].draft = action.message;
       });
     case "SEND_MESSAGE":
-      return produce(state, (draftState) => {
+      return produce(state, (draftState:any) => {
         draftState[action.currentChatId].messages.push({
           text: draftState[action.currentChatId].draft,
           time: new Date().toISOString(),
@@ -28,7 +28,7 @@ export function chatsReducer(state = initialState.chats, action) {
         },
       };
     case "FETCH_CHATS":
-      return action.chats.reduce((chats, chat) => {
+      return action.chats.reduce((chats:any, chat:any) => {
         chats[chat.id] = chat;
         return chats;
       }, {});
