@@ -6,8 +6,8 @@ import {
   showModalAddChat,
   createChat,
   viewChat,
-} from "../store/action_creators";
-import { generateId } from "./utils.module";
+} from "../store/actionCreators";
+import { generateId } from "./utils";
 
 const AddChatConnected = () => {
   const newChatId = generateId();

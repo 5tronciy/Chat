@@ -3,14 +3,13 @@ import AddChat from "./AddChat";
 import Chat from "./Chat";
 import ChatList from "./ChatList";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchChats } from "../store/action_creators";
+import { fetchChats } from "../store/actionCreators";
 import styles from "./App.module.css";
 
 const RouterConnected = () => {
   const dispatch = useDispatch();
 
   const userProfileId = useSelector((state) => state.userProfile.id);
-  debugger;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     async function fetchData() {
@@ -22,16 +21,16 @@ const RouterConnected = () => {
     fetchData();
   }, [dispatch, userProfileId]);
 
-  const modalAddChat = useSelector((state) => state.modal);
-  return <Router modalAddChat={modalAddChat} />;
+  const toggleModalAddChat = useSelector((state) => state.modal);
+  return <Router showModalAddChat={toggleModalAddChat} />;
 };
 
-export const Router = ({ modalAddChat }) => {
+export const Router = ({ showModalAddChat }) => {
   return (
     <div className={styles.wrapper}>
       <ChatList />
       <Chat />
-      {modalAddChat && <AddChat />}
+      {showModalAddChat && <AddChat />}
     </div>
   );
 };

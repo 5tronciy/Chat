@@ -1,17 +1,17 @@
-const koa = require("koa");
-const router = require("koa-router");
+const Koa = require("koa");
+const Router = require("koa-router");
 const serve = require("koa-static");
 const session = require("koa-session");
 const logger = require("koa-logger");
 
-const app = new koa();
+const app = new Koa();
 
 app.use(logger());
 
 // app.keys = ["Some keys"];
 // app.use(session(app));
 
-const _ = new router(); //Instantiate the router
+const router = new Router();
 
 let state = {
   users: {
@@ -55,7 +55,7 @@ const getChats = (ctx) => {
   });
 };
 
-_.get("/chats/:id", getChats);
+router.get("/chats/:id", getChats);
 
 const setACookie = (ctx) => {
   ctx.cookies.set("name", "value", {
@@ -64,7 +64,7 @@ const setACookie = (ctx) => {
   });
 };
 
-_.get("/", setACookie);
+router.get("/", setACookie);
 
 // app.use((ctx) => {
 //   var n = ctx.session.views || 0;
@@ -77,7 +77,7 @@ _.get("/", setACookie);
 //   }
 // });
 
-app.use(_.routes());
+app.use(router.routes());
 
 app.use(serve("./public"));
 app.use(serve("./backend/images"));
