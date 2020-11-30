@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./Chat.module.css";
 import Message from "./Message";
-import { draftChange, sendMessage } from "../store/action_creators";
+import { draftChange, sendMessage } from "../store/actionCreators";
 
 const ChatConnected = () => {
   const dispatch = useDispatch();
