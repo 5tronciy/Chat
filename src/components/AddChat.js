@@ -20,17 +20,17 @@ const AddChatConnected = () => {
 
   const dispatch = useDispatch();
 
-  const onChangeHandler = (event:any) => {
+  const onChangeHandler = (event) => {
     setNewChat({ ...newChat, title: event.currentTarget.value });
   };
 
-  const onLoadAvatar = (event:any) => {
+  const onLoadAvatar = (event) => {
     setNewChat({ ...newChat, avatar: event.currentTarget.value });
   };
 
-  const onAddChatHandler = (event:any) => {
+  const onAddChatHandler = (event) => {
     event.preventDefault();
-    if (newChat.title === '') {
+    if (newChat.title === "") {
       return;
     }
     dispatch(createChat(newChatId, newChat.title, newChat.avatar));

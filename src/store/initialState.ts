@@ -29,7 +29,7 @@ const initialState:state = {
     avatar: "tutby.png",
   },},
   currentChat: {
-    currentChatId: null,
+    currentChatId: 777,
   },
 };
 
