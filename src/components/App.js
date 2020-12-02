@@ -5,22 +5,23 @@ import ChatList from "./ChatList";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchChats } from "../store/actionCreators";
 import styles from "./App.module.css";
+import serverUrl from "./Server";
+import { getUserId, getModalAddChatState } from "../store/selectors";
 
 const RouterConnected = () => {
-  const url = "http://localhost:3001";
   const dispatch = useDispatch();
 
-  const userProfileId = useSelector((state) => state.userProfile.id);
+  const userId = useSelector(getUserId);
 
   useEffect(() => {
     async function fetchData() {
-      const chatsResponse = await fetch(url + "/chats/" + userProfileId);
+      const chatsResponse = await fetch(serverUrl + "/chats/" + userId);
       dispatch(fetchChats(await chatsResponse.json()));
     }
     fetchData();
-  }, [dispatch, userProfileId]);
+  }, [dispatch, userId]);
 
-  const toggleModalAddChat = useSelector((state) => state.modal);
+  const toggleModalAddChat = useSelector(getModalAddChatState);
   return <Router showModalAddChat={toggleModalAddChat} />;
 };
 

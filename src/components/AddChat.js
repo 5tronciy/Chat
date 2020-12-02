@@ -7,7 +7,7 @@ import {
   createChat,
   viewChat,
 } from "../store/actionCreators";
-import { generateId } from "./utils";
+import { generateId } from "./Utils";
 
 const AddChatConnected = () => {
   const [newChat, setNewChat] = useState({

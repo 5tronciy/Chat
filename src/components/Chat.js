@@ -3,15 +3,20 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from "./Chat.module.css";
 import Message from "./Message";
 import { draftChange, sendMessage } from "../store/actionCreators";
+import {
+  getUserId,
+  getCurrentChatId,
+  getCurrentChat,
+} from "../store/selectors";
 
 const ChatConnected = () => {
   const dispatch = useDispatch();
 
-  const currentChatId = useSelector((state) => state.currentChat.currentChatId);
+  const currentChatId = useSelector(getCurrentChatId);
 
-  const currentChat = useSelector((state) => state.chats[currentChatId]);
+  const currentChat = useSelector(getCurrentChat);
 
-  const userProfileId = useSelector((state) => state.userProfile.id);
+  const userId = useSelector(getUserId);
 
   const onChangeHandle = (event) => {
     dispatch(draftChange(event.currentTarget.value, currentChatId));
@@ -19,7 +24,7 @@ const ChatConnected = () => {
 
   const onSendMessageHandler = (event) => {
     event.preventDefault();
-    dispatch(sendMessage(currentChatId, userProfileId));
+    dispatch(sendMessage(currentChatId, userId));
   };
 
   return (

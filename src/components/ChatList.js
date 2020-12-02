@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import ChatInList from "./ChatInList";
 import { showModalAddChat } from "../store/actionCreators";
 import styles from "./ChatList.module.css";
+import { getChats } from "../store/selectors";
 
 const ChatListConnected = () => {
-  const chats = useSelector((state) => state.chats);
+  const chats = useSelector(getChats);
 
   const dispatch = useDispatch();
 

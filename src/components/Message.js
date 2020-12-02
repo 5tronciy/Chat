@@ -1,11 +1,12 @@
 import React from "react";
-import { getTime } from "./utils";
+import { getTime } from "./Utils";
 import { useSelector } from "react-redux";
 import styles from "./Message.module.css";
+import { getCurrentUser, getChatOfMessage } from "../store/selectors";
 
 const MessageConnected = ({ message }) => {
-  const currentUser = useSelector((state) => state.userProfile);
-  const currentChat = useSelector((state) => state.chats[message.from]);
+  const currentUser = useSelector(getCurrentUser);
+  const currentChat = useSelector(getChatOfMessage(message));
   return (
     <Message
       message={message}
