@@ -10,10 +10,7 @@ import {
 import { generateId } from "./utils";
 
 const AddChatConnected = () => {
-  const newChatId = generateId();
-
   const [newChat, setNewChat] = useState({
-    id: newChatId,
     title: "",
     avatar: "",
   });
@@ -33,6 +30,7 @@ const AddChatConnected = () => {
     if (newChat.title === "") {
       return;
     }
+    const newChatId = generateId();
     dispatch(createChat(newChatId, newChat.title, newChat.avatar));
     onCloseModalAddChat();
     dispatch(viewChat(newChatId));

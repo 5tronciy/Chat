@@ -7,15 +7,14 @@ import { fetchChats } from "../store/actionCreators";
 import styles from "./App.module.css";
 
 const RouterConnected = () => {
+  const url = "http://localhost:3001";
   const dispatch = useDispatch();
 
   const userProfileId = useSelector((state) => state.userProfile.id);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     async function fetchData() {
-      const chatsResponse = await fetch(
-        "http://localhost:3000/chats/" + userProfileId
-      );
+      const chatsResponse = await fetch(url + "/chats/" + userProfileId);
       dispatch(fetchChats(await chatsResponse.json()));
     }
     fetchData();
