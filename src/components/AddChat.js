@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import styles from "./AddChat.module.css";
 import { useDispatch } from "react-redux";
-import {
-  showModalAddChat,
-  createChat,
-  viewChat,
-} from "../store/actionCreators";
+import { showModalAddChat, createChat } from "../store/actionCreators";
 import { generateId } from "./Utils";
 
 const AddChatConnected = () => {
@@ -33,7 +29,6 @@ const AddChatConnected = () => {
     const newChatId = generateId();
     dispatch(createChat(newChatId, newChat.title, newChat.avatar));
     onCloseModalAddChat();
-    dispatch(viewChat(newChatId));
   };
 
   const onCloseModalAddChat = () => {

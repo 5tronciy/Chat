@@ -34,5 +34,5 @@ export const showModalAddChat=(value:Boolean)=> (<const> {
 export const viewChat=(id:Number|String)=>(<const> {
   type: "VIEW_CHAT", id: id });
 
-export const fetchChats=(chats:Object)=>(<const> {
+export const fetchChats=(chats:any)=>(<const> {
   type: "FETCH_CHATS", chats: chats });
