@@ -47,16 +47,15 @@ export function chatsReducer(state = initialState, action:ActionTypes) {
         draftState(action.currentChatId).draft = "";
       });
     case "CREATE_CHAT":
-      return {
-        ...state,
-        [Number(action.id)]: {
+      return produce (state, (draftState:any)=>{
+        draftState[Number(action.id)]= {
           title: action.title,
           id: action.id,
           messages: [],
           draft: "",
           avatar: action.avatar,
-        },
-      };
+        }
+      });
     case "FETCH_CHATS":
       return action.chats.reduce((chats:any, chat:any) => {
         chats[chat.id] = chat;
