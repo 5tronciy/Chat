@@ -5,7 +5,17 @@ type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>;
 
-interface initialStateInterface {}
+interface chatInterface {
+  title: String;
+  id: String;
+  messages: Array<Object>;
+  draft: String;
+  avatar: String;
+}
+
+interface initialStateInterface {
+  [chatId: string]: chatInterface;
+}
 
 const initialState: initialStateInterface = {
   777: {
@@ -27,7 +37,10 @@ const initialState: initialStateInterface = {
   },
 };
 
-export const chatsReducer = (state = initialState, action: ActionTypes) => {
+export const chatsReducer = (
+  state: initialStateInterface = initialState,
+  action: ActionTypes
+) => {
   switch (action.type) {
     case "DRAFT_CHANGE":
       return produce(state, (draftState: any) => {
@@ -53,10 +66,13 @@ export const chatsReducer = (state = initialState, action: ActionTypes) => {
         };
       });
     case "FETCH_CHATS":
-      return action.chats.reduce((chats: any, chat: any) => {
-        chats[chat.id] = chat;
-        return chats;
-      }, {});
+      return action.chats.reduce(
+        (chats: initialStateInterface, chat: chatInterface) => {
+          chats[Number(chat.id)] = chat;
+          return chats;
+        },
+        {}
+      );
     default:
       return state;
   }
