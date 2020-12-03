@@ -1,25 +1,29 @@
 import produce from "immer";
-import * as actions from  "../actionCreators"
+import * as actions from "../actionCreators";
 
-type InferValueTypes<T> = T extends {[key:string]: infer U}
-? U
-: never;
+type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>;
 
+interface initialStateInterface {
+  currentChatId: Number;
+}
 
-const initialState =  {
-    currentChatId: 777,
-  };
+const initialState: initialStateInterface = {
+  currentChatId: 777,
+};
 
-export function currentChatReducer(state = initialState, action:ActionTypes) {
+export const currentChatReducer = (
+  state: initialStateInterface = initialState,
+  action: ActionTypes
+) => {
   switch (action.type) {
     case "VIEW_CHAT":
     case "CREATE_CHAT":
-      return produce(state, (draftState:any) => {
+      return produce(state, (draftState: any) => {
         draftState.currentChatId = action.id;
       });
     default:
       return state;
   }
-}
+};

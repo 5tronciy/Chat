@@ -1,18 +1,14 @@
 import produce from "immer";
-import * as actions from  "../actionCreators"
+import * as actions from "../actionCreators";
 
-type InferValueTypes<T> = T extends {[key:string]: infer U}
-? U
-: never;
+type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>;
 
-interface initialStateInterface{
+interface initialStateInterface {}
 
-}
-
-const initialState:initialStateInterface = 
-  {777: {
+const initialState: initialStateInterface = {
+  777: {
     title: "nexta",
     id: "777",
     messages: [
@@ -29,16 +25,16 @@ const initialState:initialStateInterface =
     draft: "",
     avatar: "tutby.png",
   },
-}
+};
 
-export function chatsReducer(state = initialState, action:ActionTypes) {
+export const chatsReducer = (state = initialState, action: ActionTypes) => {
   switch (action.type) {
     case "DRAFT_CHANGE":
-      return produce(state, (draftState:any) => {
+      return produce(state, (draftState: any) => {
         draftState(action.currentChatId).draft = action.message;
       });
     case "SEND_MESSAGE":
-      return produce(state, (draftState:any) => {
+      return produce(state, (draftState: any) => {
         draftState(action.currentChatId).messages.push({
           text: draftState(action.currentChatId).draft,
           time: new Date().toISOString(),
@@ -47,21 +43,21 @@ export function chatsReducer(state = initialState, action:ActionTypes) {
         draftState(action.currentChatId).draft = "";
       });
     case "CREATE_CHAT":
-      return produce (state, (draftState:any)=>{
-        draftState[Number(action.id)]= {
+      return produce(state, (draftState: any) => {
+        draftState[Number(action.id)] = {
           title: action.title,
           id: action.id,
           messages: [],
           draft: "",
           avatar: action.avatar,
-        }
+        };
       });
     case "FETCH_CHATS":
-      return action.chats.reduce((chats:any, chat:any) => {
+      return action.chats.reduce((chats: any, chat: any) => {
         chats[chat.id] = chat;
         return chats;
       }, {});
     default:
       return state;
   }
-}
+};
