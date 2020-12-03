@@ -31,10 +31,8 @@ export const showModalAddChat=(value:Boolean)=> (<const> {
     modal: value
   });
 
-export const viewChat=(chatId:Number|String)=>(<const> {
-  type: "VIEW_CHAT", chatId: chatId });
+export const viewChat=(id:Number|String)=>(<const> {
+  type: "VIEW_CHAT", id: id });
 
 export const fetchChats=(chats:Object)=>(<const> {
   type: "FETCH_CHATS", chats: chats });
-
-export type ActionTypes = ReturnType<typeof chatNameChange>| ReturnType<typeof createChat>| ReturnType<typeof draftChange>| ReturnType<typeof loadAvatar>| ReturnType<typeof sendMessage>| ReturnType<typeof loginUser>| ReturnType<typeof showModalAddChat>| ReturnType<typeof viewChat>| ReturnType<typeof fetchChats>
