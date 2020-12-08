@@ -18,11 +18,11 @@ const ChatConnected = () => {
 
   const userId = useSelector(getUserId);
 
-  const onChangeHandle = (event) => {
+  const onChangeHandle = (event:any) => {
     dispatch(draftChange(event.currentTarget.value, currentChatId));
   };
 
-  const onSendMessageHandler = (event) => {
+  const onSendMessageHandler = (event:any) => {
     event.preventDefault();
     dispatch(sendMessage(currentChatId, userId));
   };
@@ -36,7 +36,7 @@ const ChatConnected = () => {
   );
 };
 
-export const Chat = ({ currentChat, onSendMessageHandler, onChangeHandle }) => {
+export const Chat = ({ currentChat, onSendMessageHandler, onChangeHandle }:any) => {
   return (
     <div className={styles.chat}>
       <div className={styles.chatTitle}>
@@ -55,7 +55,7 @@ export const Chat = ({ currentChat, onSendMessageHandler, onChangeHandle }) => {
       </div>
       <div className={styles.conversation}>
         <ul className={styles.messages}>
-          {currentChat.messages.map((message) => (
+          {currentChat.messages.map((message:any) => (
             <Message message={message} key={message.time + message.from} />
           ))}
         </ul>
