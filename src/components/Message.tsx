@@ -3,15 +3,15 @@ import { useSelector } from "react-redux";
 import styles from "./Message.module.css";
 import { getCurrentUser, getChatOfMessage } from "../store/selectors";
 import {InitialStateInterface as CurrentUserInterface} from "../store/reducers/userProfileReducer"
-import {ChatInterface} from "../store/reducers/chatsReducer"
+import {ChatInterface, MessageType} from "../store/reducers/chatsReducer"
 
 export interface Props {
-  message: {time:String, from:String,text:String};
+  message: MessageType;
   currentUser: CurrentUserInterface;
   currentChat: ChatInterface;
 }
 
-const MessageConnected = ({ message }:Props) => {
+const MessageConnected = ({ message }:any) => {
   const currentUser = useSelector(getCurrentUser);
   const currentChat = useSelector(getChatOfMessage(message));
   return (
