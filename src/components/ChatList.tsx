@@ -17,7 +17,7 @@ const ChatListConnected = () => {
   return <ChatList onAddChat={onAddChat} chats={chats} />;
 };
 
-export const ChatList = ({ onAddChat, chats }) => {
+export const ChatList = ({ onAddChat, chats }:any) => {
   return (
     <div className={styles.chats}>
       <div className={styles.listTitleMargins}>
@@ -29,7 +29,7 @@ export const ChatList = ({ onAddChat, chats }) => {
         </div>
       </div>
       <ul className={styles.chatList}>
-        {Object.values(chats).map((chat) => (
+        {Object.values(chats).map((chat:any) => (
           <ChatInList chat={chat} key={chat.id + chat.title} />
         ))}
       </ul>
