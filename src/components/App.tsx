@@ -25,7 +25,7 @@ const RouterConnected = () => {
   return <Router showModalAddChat={toggleModalAddChat} />;
 };
 
-export const Router = ({ showModalAddChat }) => {
+export const Router = ({ showModalAddChat }:any) => {
   return (
     <div className={styles.wrapper}>
       <ChatList />

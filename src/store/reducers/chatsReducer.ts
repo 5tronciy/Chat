@@ -5,7 +5,11 @@ type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>;
 
-export type MessageType = { time: string; from: string; text: string };
+export type MessageType = {
+  time: string;
+  from: string;
+  text: string;
+};
 
 export interface ChatInterface {
   title: string;
@@ -20,7 +24,7 @@ export interface InitialStateInterface {
 }
 
 const initialState: InitialStateInterface = {
-  777: {
+  "777": {
     title: "nexta",
     id: "777",
     messages: [
@@ -30,7 +34,7 @@ const initialState: InitialStateInterface = {
     draft: "",
     avatar: "nexta.png",
   },
-  888: {
+  "888": {
     title: "tutBY",
     id: "888",
     messages: [{ time: "2020-08-30T24:00", from: "888", text: "Hi" }],

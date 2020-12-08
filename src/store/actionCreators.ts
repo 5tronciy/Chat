@@ -4,11 +4,7 @@ export const chatNameChange = (value: String) =>
     title: value,
   };
 
-export const createChat = (
-  id: Number | String,
-  title: String,
-  avatar: String
-) =>
+export const createChat = (id: String, title: String, avatar: String) =>
   <const>{
     type: "CREATE_CHAT",
     id: id,
@@ -16,7 +12,7 @@ export const createChat = (
     avatar: avatar,
   };
 
-export const draftChange = (value: String, currentChatId: Number | String) =>
+export const draftChange = (value: String, currentChatId: String) =>
   <const>{
     type: "DRAFT_CHANGE",
     message: value,
@@ -29,10 +25,7 @@ export const loadAvatar = (value: String) =>
     avatar: value,
   };
 
-export const sendMessage = (
-  currentChatId: Number | String,
-  userProfileId: Number | String
-) =>
+export const sendMessage = (currentChatId: String, userProfileId: String) =>
   <const>{
     type: "SEND_MESSAGE",
     currentChatId: currentChatId,
@@ -51,7 +44,7 @@ export const showModalAddChat = (value: Boolean) =>
     modal: value,
   };
 
-export const viewChat = (id: Number | String) =>
+export const viewChat = (id: String) =>
   <const>{
     type: "VIEW_CHAT",
     id: id,

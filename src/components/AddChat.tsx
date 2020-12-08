@@ -4,6 +4,7 @@ import styles from "./AddChat.module.css";
 import { useDispatch } from "react-redux";
 import { showModalAddChat, createChat } from "../store/actionCreators";
 import { generateId } from "./Utils";
+import { ChatInterface } from "../store/reducers/chatsReducer";
 
 const portal = document.getElementById("portal") as HTMLElement;
 
@@ -11,19 +12,22 @@ const AddChatConnected = () => {
   const [newChat, setNewChat] = useState({
     title: "",
     avatar: "",
+    id: "",
+    messages: [],
+    draft: "",
   });
 
   const dispatch = useDispatch();
 
-  const onChangeHandler = (event:any) => {
+  const onChangeHandler = (event: any) => {
     setNewChat({ ...newChat, title: event.currentTarget.value });
   };
 
-  const onLoadAvatar = (event:any) => {
+  const onLoadAvatar = (event: any) => {
     setNewChat({ ...newChat, avatar: event.currentTarget.value });
   };
 
-  const onAddChatHandler = (event:any) => {
+  const onAddChatHandler = (event: any) => {
     event.preventDefault();
     if (newChat.title === "") {
       return;
@@ -47,13 +51,21 @@ const AddChatConnected = () => {
   );
 };
 
+export interface Props {
+  onCloseModalAddChat: () => void;
+  onAddChatHandler: (event: any) => void;
+  newChat: ChatInterface;
+  onChangeHandler: (event: any) => void;
+  onLoadAvatar: (event: any) => void;
+}
+
 export const AddChat = ({
   onCloseModalAddChat,
   onAddChatHandler,
   newChat,
   onChangeHandler,
   onLoadAvatar,
-}:any) => {
+}: Props) => {
   return ReactDOM.createPortal(
     <div className={styles.modal}>
       <div className={styles.addChat}>
