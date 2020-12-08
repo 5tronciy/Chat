@@ -63,7 +63,7 @@ export const chatsReducer = (
       });
     case "CREATE_CHAT":
       return produce(state, (draftState: any) => {
-        draftState[Number(action.id)] = {
+        draftState[String(action.id)] = {
           title: action.title,
           id: action.id,
           messages: [],
@@ -74,7 +74,7 @@ export const chatsReducer = (
     case "FETCH_CHATS":
       return action.chats.reduce(
         (chats: InitialStateInterface, chat: ChatInterface) => {
-          chats[Number(chat.id)] = chat;
+          chats[chat.id] = chat;
           return chats;
         },
         {}
