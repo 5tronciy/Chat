@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 import { showModalAddChat, createChat } from "../store/actionCreators";
 import { generateId } from "./Utils";
 
+const portal = document.getElementById("portal") as HTMLElement;
+
 const AddChatConnected = () => {
   const [newChat, setNewChat] = useState({
     title: "",
@@ -13,15 +15,15 @@ const AddChatConnected = () => {
 
   const dispatch = useDispatch();
 
-  const onChangeHandler = (event) => {
+  const onChangeHandler = (event:any) => {
     setNewChat({ ...newChat, title: event.currentTarget.value });
   };
 
-  const onLoadAvatar = (event) => {
+  const onLoadAvatar = (event:any) => {
     setNewChat({ ...newChat, avatar: event.currentTarget.value });
   };
 
-  const onAddChatHandler = (event) => {
+  const onAddChatHandler = (event:any) => {
     event.preventDefault();
     if (newChat.title === "") {
       return;
@@ -51,7 +53,7 @@ export const AddChat = ({
   newChat,
   onChangeHandler,
   onLoadAvatar,
-}) => {
+}:any) => {
   return ReactDOM.createPortal(
     <div className={styles.modal}>
       <div className={styles.addChat}>
@@ -101,7 +103,7 @@ export const AddChat = ({
         </div>
       </div>
     </div>,
-    document.getElementById("portal")
+    portal
   );
 };
 
