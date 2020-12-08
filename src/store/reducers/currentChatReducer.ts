@@ -5,16 +5,16 @@ type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>;
 
-interface initialStateInterface {
+interface InitialStateInterface {
   currentChatId: Number;
 }
 
-const initialState: initialStateInterface = {
+const initialState: InitialStateInterface = {
   currentChatId: 777,
 };
 
 export const currentChatReducer = (
-  state: initialStateInterface = initialState,
+  state: InitialStateInterface = initialState,
   action: ActionTypes
 ) => {
   switch (action.type) {

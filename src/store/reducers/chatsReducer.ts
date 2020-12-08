@@ -5,16 +5,16 @@ type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>;
 
-interface chatInterface {
+export interface ChatInterface {
   title: String;
   id: String;
-  messages: Array<Object>;
+  messages: Array<{ time: String; from: String; text: String }>;
   draft: String;
   avatar: String;
 }
 
 interface initialStateInterface {
-  [chatId: string]: chatInterface;
+  [chatId: string]: ChatInterface;
 }
 
 const initialState: initialStateInterface = {
@@ -67,7 +67,7 @@ export const chatsReducer = (
       });
     case "FETCH_CHATS":
       return action.chats.reduce(
-        (chats: initialStateInterface, chat: chatInterface) => {
+        (chats: initialStateInterface, chat: ChatInterface) => {
           chats[Number(chat.id)] = chat;
           return chats;
         },

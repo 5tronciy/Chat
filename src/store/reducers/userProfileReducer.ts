@@ -4,20 +4,20 @@ type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
 
 type ActionTypes = ReturnType<InferValueTypes<typeof actions>>;
 
-interface initialStateInterface {
+export interface InitialStateInterface {
   id: String;
   nickName: String;
   avatar: String;
 }
 
-const initialState: initialStateInterface = {
+const initialState: InitialStateInterface = {
   id: "1",
   nickName: "Alfons",
   avatar: "pahonia.png",
 };
 
 export const userProfileReducer = (
-  state: initialStateInterface = initialState,
+  state: InitialStateInterface = initialState,
   action: ActionTypes
 ) => {
   switch (action.type) {

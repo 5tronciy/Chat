@@ -35,7 +35,7 @@
   "scripts": {
     "start": "react-scripts start",
     "startBackend": "nodemon ./backend",
-    "build": "react-scripts build",
+    "build": "tsc",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
