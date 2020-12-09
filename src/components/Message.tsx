@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./Message.module.css";
 import { getCurrentUser, getChatOfMessage } from "../store/selectors";
-import {InitialStateInterface as CurrentUserInterface} from "../store/reducers/userProfileReducer"
-import {ChatInterface, MessageType} from "../store/reducers/chatsReducer"
+import { InitialStateInterface as CurrentUserInterface } from "../store/reducers/userProfileReducer";
+import { ChatInterface, MessageType } from "../store/reducers/chatsReducer";
 
 export interface Props {
   message: MessageType;
@@ -11,7 +11,7 @@ export interface Props {
   currentChat: ChatInterface;
 }
 
-const MessageConnected = ({ message }:any) => {
+const MessageConnected = ({ message }: any) => {
   const currentUser = useSelector(getCurrentUser);
   const currentChat = useSelector(getChatOfMessage(message));
   return (
@@ -23,7 +23,7 @@ const MessageConnected = ({ message }:any) => {
   );
 };
 
-export const Message = ({ message, currentUser, currentChat }:Props) => {
+export const Message = ({ message, currentUser, currentChat }: Props) => {
   return (
     <li className={message.from === currentUser.id ? styles.right : ""}>
       <div className={styles.message}>
@@ -44,7 +44,9 @@ export const Message = ({ message, currentUser, currentChat }:Props) => {
           <div className={styles.messageTextWrapper}>
             <div className={styles.messageTextContent}>
               <span>{message.text} </span>
-              <div className={styles.messageTime}>{message.time.slice(11)}</div>
+              <div className={styles.messageTime}>
+                {message.time.slice(11, 16)}
+              </div>
             </div>
           </div>
           <div className={styles.conversationName}>
