@@ -50,20 +50,20 @@ export const chatsReducer = (
   switch (action.type) {
     case "DRAFT_CHANGE":
       return produce(state, (draftState: any) => {
-        draftState[String(action.currentChatId)].draft = action.message;
+        draftState[action.currentChatId].draft = action.message;
       });
     case "SEND_MESSAGE":
       return produce(state, (draftState: any) => {
-        draftState[String(action.currentChatId)].messages.push({
-          text: draftState[String(action.currentChatId)].draft,
+        draftState[action.currentChatId].messages.push({
+          text: draftState[action.currentChatId].draft,
           time: new Date().toISOString(),
           from: action.userProfileId,
         });
-        draftState[String(action.currentChatId)].draft = "";
+        draftState[action.currentChatId].draft = "";
       });
     case "CREATE_CHAT":
       return produce(state, (draftState: any) => {
-        draftState[String(action.id)] = {
+        draftState[action.id] = {
           title: action.title,
           id: action.id,
           messages: [],
