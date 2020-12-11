@@ -1,11 +1,12 @@
 const Koa = require("koa");
 const Router = require("koa-router");
 const serve = require("koa-static");
-const session = require("koa-session");
+// const session = require("koa-session");
 const logger = require("koa-logger");
+const cors = require("@koa/cors");
 
 const app = new Koa();
-
+app.use(cors());
 app.use(logger());
 
 // app.keys = ["Some keys"];
@@ -44,7 +45,7 @@ let state = {
     },
   },
   currentChat: {
-    currentChatId: 777,
+    currentChatId: "777",
   },
 };
 
@@ -66,6 +67,42 @@ const setACookie = (ctx) => {
 
 router.get("/", setACookie);
 
+const getUsers = () => state.users;
+
+const getUserId = (userName, userPassword) => {
+  const users = getUsers();
+  for (let user in users) {
+    const { nickName, password } = users[user];
+    if (nickName === userName && password === userPassword) {
+      return users[user].id;
+    }
+  }
+  return -1;
+};
+
+const isFreeUserName = (name) => {
+  const users = getUsers();
+  for (let user in users) {
+    const { nickName } = users[user];
+    if (nickName === name) {
+      return false;
+    }
+  }
+  return true;
+};
+
+const generateId = () => Math.floor(Math.random() * 100000);
+
+const createNewUser = (name, password) => {
+  return {
+    id: generateId(),
+    nickName: name,
+    password: password,
+    avatar: "img",
+    chatIds: [],
+  };
+};
+
 // app.use((ctx) => {
 //   var n = ctx.session.views || 0;
 //   ctx.session.views = ++n;
@@ -78,6 +115,7 @@ router.get("/", setACookie);
 // });
 
 app.use(router.routes());
+app.use(router.allowedMethods());
 
 app.use(serve("./public"));
 app.use(serve("./backend/images"));
