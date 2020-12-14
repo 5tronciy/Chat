@@ -43,4 +43,4 @@ Chat will automatically opened in a default browser. You can open it yourself in
     
 * Inspiration:
 
-    [Chatvia - Chat App Template](https://themesbrand.com/chatvia/)
+    [Chatvia - Chat App Template](https://themesbrand.com/chatvia/layouts/dark.html)
