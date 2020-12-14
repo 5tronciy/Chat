@@ -25,21 +25,11 @@ export interface InitialStateInterface {
 
 const initialState: InitialStateInterface = {
   "777": {
-    title: "nexta",
-    id: "777",
-    messages: [
-      { time: "2020-09-30T20:00", from: "777", text: "Hello" },
-      { time: "2020-08-30T24:00", from: "888", text: "Hi" },
-    ],
+    title: "",
+    id: "",
+    messages: [],
     draft: "",
-    avatar: "nexta.png",
-  },
-  "888": {
-    title: "tutBY",
-    id: "888",
-    messages: [{ time: "2020-08-30T24:00", from: "888", text: "Hi" }],
-    draft: "",
-    avatar: "tutby.png",
+    avatar: "",
   },
 };
 
