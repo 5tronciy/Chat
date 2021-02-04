@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import AddChat from "./AddChat";
-import Chat from "./Chat";
-import ChatList from "./ChatList";
+import AddChat from "../AddChat/AddChat";
+import Chat from "../Chat/Chat";
+import ChatList from "../ChatList/ChatList";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchChats } from "../store/actionCreators";
+import { fetchChats } from "../../store/actionCreators";
 import styles from "./App.module.css";
-import serverUrl from "./Server";
-import { getUserId, getModalAddChatState } from "../store/selectors";
+import serverUrl from "../../Server";
+import { getUserId, getModalAddChatState } from "../../store/selectors";
 
 const RouterConnected = () => {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const RouterConnected = () => {
   return <Router showModalAddChat={toggleModalAddChat} />;
 };
 
-export const Router = ({ showModalAddChat }:any) => {
+export const Router = ({ showModalAddChat }: any) => {
   return (
     <div className={styles.wrapper}>
       <ChatList />

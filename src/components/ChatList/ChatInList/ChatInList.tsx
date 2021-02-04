@@ -1,19 +1,19 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { viewChat } from "../store/actionCreators";
+import { viewChat } from "../../../store/actionCreators";
 import styles from "./ChatInList.module.css";
 
-const ChatInListConnected = ({ chat }:any) => {
+const ChatInListConnected = ({ chat }: any) => {
   const dispatch = useDispatch();
 
-  const onViewChat = (chatId:any) => {
+  const onViewChat = (chatId: any) => {
     dispatch(viewChat(chatId));
   };
 
   return <ChatInList chat={chat} onViewChat={onViewChat} />;
 };
 
-export const ChatInList = ({ chat, onViewChat }:any) => {
+export const ChatInList = ({ chat, onViewChat }: any) => {
   return (
     <li>
       <div

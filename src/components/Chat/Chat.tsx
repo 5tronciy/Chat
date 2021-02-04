@@ -1,13 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styles from "./Chat.module.css";
-import Message from "./Message";
-import { draftChange, sendMessage } from "../store/actionCreators";
+import Message from "./Message/Message";
+import { draftChange, sendMessage } from "../../store/actionCreators";
 import {
   getUserId,
   getCurrentChatId,
   getCurrentChat,
-} from "../store/selectors";
+} from "../../store/selectors";
 
 const ChatConnected = () => {
   const dispatch = useDispatch();
@@ -18,11 +18,11 @@ const ChatConnected = () => {
 
   const userId = useSelector(getUserId);
 
-  const onChangeHandle = (event:any) => {
+  const onChangeHandle = (event: any) => {
     dispatch(draftChange(event.currentTarget.value, currentChatId));
   };
 
-  const onSendMessageHandler = (event:any) => {
+  const onSendMessageHandler = (event: any) => {
     event.preventDefault();
     dispatch(sendMessage(currentChatId, userId));
   };
@@ -36,7 +36,11 @@ const ChatConnected = () => {
   );
 };
 
-export const Chat = ({ currentChat, onSendMessageHandler, onChangeHandle }:any) => {
+export const Chat = ({
+  currentChat,
+  onSendMessageHandler,
+  onChangeHandle,
+}: any) => {
   return (
     <div className={styles.chat}>
       <div className={styles.chatTitle}>
@@ -55,7 +59,7 @@ export const Chat = ({ currentChat, onSendMessageHandler, onChangeHandle }:any) 
       </div>
       <div className={styles.conversation}>
         <ul className={styles.messages}>
-          {currentChat.messages.map((message:any) => (
+          {currentChat.messages.map((message: any) => (
             <Message message={message} key={message.time + message.from} />
           ))}
         </ul>

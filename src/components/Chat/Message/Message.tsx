@@ -1,9 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./Message.module.css";
-import { getCurrentUser, getChatOfMessage } from "../store/selectors";
-import { InitialStateInterface as CurrentUserInterface } from "../store/reducers/userProfileReducer";
-import { ChatInterface, MessageType } from "../store/reducers/chatsReducer";
+import { getCurrentUser, getChatOfMessage } from "../../../store/selectors";
+import { InitialStateInterface as CurrentUserInterface } from "../../../store/reducers/userProfileReducer";
+import {
+  ChatInterface,
+  MessageType,
+} from "../../../store/reducers/chatsReducer";
 
 export interface Props {
   message: MessageType;

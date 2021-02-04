@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import styles from "./AddChat.module.css";
 import { useDispatch } from "react-redux";
-import { showModalAddChat, createChat } from "../store/actionCreators";
-import { generateId } from "./Utils";
-import { ChatInterface } from "../store/reducers/chatsReducer";
+import { showModalAddChat, createChat } from "../../store/actionCreators";
+import { generateId } from "../Utils";
+import { ChatInterface } from "../../store/reducers/chatsReducer";
 
 const portal = document.getElementById("portal") as HTMLElement;
 
