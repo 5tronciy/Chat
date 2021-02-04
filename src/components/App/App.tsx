@@ -1,38 +1,17 @@
-import React, { useEffect } from "react";
-import AddChat from "../AddChat/AddChat";
-import Chat from "../Chat/Chat";
-import ChatList from "../ChatList/ChatList";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchChats } from "../../store/actionCreators";
-import styles from "./App.module.css";
-import serverUrl from "../../Server";
-import { getUserId, getModalAddChatState } from "../../store/selectors";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { createMemoryHistory } from "history";
+import HomePage from "./../../route/HomePage/HomePage";
 
-const RouterConnected = () => {
-  const dispatch = useDispatch();
-
-  const userId = useSelector(getUserId);
-
-  useEffect(() => {
-    async function fetchData() {
-      const chatsResponse = await fetch(serverUrl + "/chats/" + userId);
-      dispatch(fetchChats(await chatsResponse.json()));
-    }
-    fetchData();
-  }, [dispatch, userId]);
-
-  const toggleModalAddChat = useSelector(getModalAddChatState);
-  return <Router showModalAddChat={toggleModalAddChat} />;
-};
-
-export const Router = ({ showModalAddChat }: any) => {
+export const App = () => {
+  const history = createMemoryHistory();
   return (
-    <div className={styles.wrapper}>
-      <ChatList />
-      <Chat />
-      {showModalAddChat && <AddChat />}
-    </div>
+    <Router history={history}>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Redirect from="*" to="/" />
+      </Switch>
+    </Router>
   );
 };
 
-export default RouterConnected;
+export default App;
