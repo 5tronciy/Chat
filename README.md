@@ -1,3 +1,5 @@
+[![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/5tronciy/chat)
+
 # Chat (Studying Project)
 
 Personal website with chat functionality. This project is developed just to practice in writing react application full stack.
